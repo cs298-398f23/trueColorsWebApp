@@ -4,5 +4,5 @@ An online/web version of the _True Colors_ personality assessment typically comp
 **Project Members**
 - Jack Drabic
 - Rafael Garcia Jr.
-- 
+- Madison Meyers
 - Michael Romero
