@@ -12,13 +12,13 @@ def create_app():
 
     # TEMPORARY ROUTE for receiving each score from the assessment.
     @app.route("/quiz.php", methods=['GET', 'POST'])
-    def simpleSaveScore():
+    def saveScore():
         return "score saved"
 
 
     # TEMPORARY ROUTE for receiving each score from the assessment.
     @app.route('/saveScore/<score1>/<score2>/<score3>/<score4>', methods=['POST'])
-    def saveScore(score1, score2, score3, score4):
+    def postScore(score1, score2, score3, score4):
         return jsonify({'score1': score1,
                         'score2': score2,
                         'score3': score3,
