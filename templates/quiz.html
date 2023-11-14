@@ -1,1 +1,33 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>True Colors Assessment</title>
+</head>
+<body>
+    <p>Welcome to the True Colors Assessment</p>
+    <p>Click the button below to begin</p>
+    <button type="button" onclick="window.location.href='quiz.php'">Begin!</button>
+    <script>
+        function postItem() {
+    var button = document.getElementById("button")
+    button.addEventListener("click", function(event) {
+        event.preventDefault()
+        fetch('/quiz.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                score1: score1,
+                score2: score2,
+                score3: score3,
+                score4: score4,
+            })
+        })
+        })
+    }
+    </script>
+</body>
