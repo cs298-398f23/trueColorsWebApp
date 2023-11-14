@@ -12,7 +12,7 @@ def create_app():
 
     # TEMPORARY ROUTE for receiving each score from the assessment.
     @app.route("/quiz.php", methods=['GET', 'POST'])
-    def saveScore():
+    def simpleSaveScore():
         return "score saved"
 
 
