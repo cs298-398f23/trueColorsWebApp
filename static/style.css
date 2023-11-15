@@ -33,16 +33,6 @@ ul li {
   margin: 1rem 0;
 }
 
-.question_block {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  width: 250px;
-  max-width: 100%;
-  overflow: hidden;
-}
-
 .test_starter {
   padding: 4rem;
   background-color: #fff;
@@ -50,6 +40,28 @@ ul li {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 600px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#start_button {
+  background-color:rgb(21, 180, 180);
+  color: #fff;
+  border: none;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-family: inherit;
+  padding: 1.3rem;
+}
+
+.question_block {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 250px;
   max-width: 100%;
   overflow: hidden;
 }
