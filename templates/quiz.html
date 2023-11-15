@@ -4,28 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
-    <title>True Colors Assessment</title>
+    <title>True Colors Personality Test</title>
 </head>
 <body>
-    <p>Welcome to the True Colors Assessment</p>
-    <p>Click the button below to begin</p>
-    <button type="button", id="button" onclick="window.location.href='quiz.php'">Begin!</button>
-    <script>
-        var button = document.getElementById("button")
-        button.addEventListener("click", function(event) {
-            event.preventDefault()
-            fetch('/quiz.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    score1: score1,
-                    score2: score2,
-                    score3: score3,
-                    score4: score4,
-                })
-            })
-        })
-    </script>
+
+<!-- Seperate begin test button -->
+<!-- Separate "begin quiz" button, quiz begins when pressed -->
+<div class="test_starter fade-in">
+
+    <h2 id="test_title">True Colors Personality Test</h2>
+    <p>In each section of the test, you will rank four groups of words based on how much you think they describe you.</p>
+    <p>Read the each of the words and decide which group describes you best. Give that group a “4”.</p>
+    <p>Then rank the next three letters from 3 to 1 by descending preference. Each group must be ranked before moving on,
+        to the next section, with 4 meaning "most like you" to 1 meaning "least like you."</p>
+    <p>After each group has been ranked, press submit to continue this process with the next set of words until the test is complete.</p>
+    <button type="button", id="start_button" onclick="window.location.href='quiz.php'">Begin Test</button>
+
+</div>
+
+<!-- Body of what quiz should look like -->
+<div class="test_container" id="quiz">
+
+    <div class="question_block">
+
+        <h2 id="question">Letter A</h2>
+
+        <!-- Each question block has a header, option buttons, and group of words. -->
+
+            <li>
+                <input type="radio" name="answer" class="answer" id="score_four">
+                <label for="a" id="four_button">4</label>
+            
+                <input type="radio" name="answer" class="answer" id="score_three">
+                <label for="b" id="three_button">3</label>
+            
+                <input type="radio" name="answer" class="answer" id="score_two">
+                <label for="c" id="two_button">2</label>
+            
+                <input type="radio" name="answer" class="answer" id="score_first">
+                <label for="d" id="one_button">1</label>
+            </li>
+
+        <ul>
+            <li>Active</li>
+            <li>Opportunistic</li>
+            <li>Spontaneous</li>
+        </ul>
+        
+    </div>
+
+<button id="submit">Submit Response</button>
+
+</div>
+
+<script>
+document.getElementById("start_button").addEventListener("click", function(event) {
+    event.preventDefault()
+    var description = "hello"
+    fetch('/quiz.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:
+            `description=${description}`
+    })
+})
+</script>
+
 </body>
+</html>
