@@ -1,2 +1,12 @@
-//The code that I had for JavaScript, I couldn't get the server to find it for some reason. I moved it inside the html as a script tag, and that worked
-//Just thought I should comment here to avoid confusion
+document.getElementById("start_button").addEventListener("click", function(event) {
+    event.preventDefault()
+    var description = "hello"
+    fetch('/quiz', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:
+            `description=${description}`
+    })
+})
