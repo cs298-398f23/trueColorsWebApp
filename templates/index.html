@@ -19,7 +19,7 @@
     <p>Then rank the next three letters from 3 to 1 by descending preference. Each group must be ranked before moving on,
         to the next section, with 4 meaning "most like you" to 1 meaning "least like you."</p>
     <p>After each group has been ranked, press submit to continue this process with the next set of words until the test is complete.</p>
-    <button type="button", id="start_button" onclick="window.location.href='quiz.php'">Begin Test</button>
+    <button type="button", id="start_button" onclick="window.location.href='quiz'">Begin Test</button>
 
 </div>
 
@@ -32,17 +32,17 @@
         
         <h2 id="question">Letter A</h2>
 
-            <input type="radio" name="answer" class="answer" id="score_four">
-            <label for="a" id="four_button">4</label>
+            <input type="radio" name="answer" class="answer" id="4">
+            <label for="4" id="four_button">4</label>
             
-            <input type="radio" name="answer" class="answer" id="score_three">
-            <label for="b" id="three_button">3</label>
+            <input type="radio" name="answer" class="answer" id="3">
+            <label for="3" id="three_button">3</label>
             
-            <input type="radio" name="answer" class="answer" id="score_two">
-            <label for="c" id="two_button">2</label>
+            <input type="radio" name="answer" class="answer" id="2">
+            <label for="2" id="two_button">2</label>
             
-            <input type="radio" name="answer" class="answer" id="score_first">
-            <label for="d" id="one_button">1</label>
+            <input type="radio" name="answer" class="answer" id="1">
+            <label for="1" id="one_button">1</label>
 
         <ul>
             <li>Active</li>
@@ -55,6 +55,7 @@
 <button id="submit">Submit Response</button>
 
 </div>
+
 </body>
 <script src="/static/app.js"></script>
 
