@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/static/app.js"></script>
     <title>True Colors Personality Test</title>
 </head>
 <body>
@@ -55,21 +56,6 @@
 <button id="submit">Submit Response</button>
 
 </div>
-
-<script>
-document.getElementById("start_button").addEventListener("click", function(event) {
-    event.preventDefault()
-    var description = "hello"
-    fetch('/quiz.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:
-            `description=${description}`
-    })
-})
-</script>
 
 </body>
 </html>
