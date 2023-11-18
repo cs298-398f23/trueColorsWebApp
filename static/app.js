@@ -11,23 +11,55 @@ document.getElementById('start_button').addEventListener('click', function(event
     })
 })
 
-function getSelected() {
+function getSelectedA() {
 
-    const answerEls = document.querySelectorAll(".answer");
-    let answer;
+    const answerEls = document.querySelectorAll(".answerA");
+    let answerA;
 
-    answerEls.forEach((answerEl) => {
-        if(answerEl.checked) {
-            answer = answerEl.id;
+    answerEls.forEach((answerElA) => {
+        if(answerElA.checked) {
+            answerA = answerElA.id;
         }
     });
-    return answer;
+    return answerA;
+}
+
+function getSelectedB() {
+
+    const answerEls = document.querySelectorAll(".answerB");
+    let answerB;
+
+    answerEls.forEach((answerElB) => {
+        if(answerElB.checked) {
+            answerB = answerElB.id;
+        }
+    });
+    return answerB;
+}
+
+function getSelectedC() {
+
+    const answerEls = document.querySelectorAll(".answerC");
+    let answerC;
+
+    answerEls.forEach((answerElC) => {
+        if(answerElC.checked) {
+            answerC = answerElC.id;
+        }
+    });
+    return answerC;
 }
 
 document.getElementById('submit').addEventListener('click', () => {
 
-    const answer = getSelected();
+    const answerA = getSelectedA();
     
-    console.log(answer);
+    console.log(answerA);
+
+    const answerB = getSelectedB();
+    console.log(answerB)
+
+    const answerC = getSelectedC();
+    console.log(answerC)
     
     });
