@@ -6,7 +6,7 @@ def create_app():
 
     @app.route('/')
     def index():
-        return render_template("index.html", data=data)
+        return render_template("index.html")
 
     # TEMPORARY ROUTE for receiving each score from the assessment.
     @app.route("/quiz", methods=['GET', 'POST'])
