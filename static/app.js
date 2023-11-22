@@ -70,7 +70,7 @@ function holdAnswers() {
     return answers;
 }
 
-submit.addEventListener('click', () => {
+submit_button.addEventListener('click', () => {
 
     const answerA = getSelected('A');
 
