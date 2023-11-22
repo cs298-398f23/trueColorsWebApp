@@ -8,9 +8,8 @@
 </head>
 <body>
 
-<!-- Seperate begin test button -->
-<!-- Separate "begin quiz" button, quiz begins when pressed -->
-<div class="test_starter fade-in">
+<!-- Test start panel, only thing that should be displayed when test begins -->
+<div class="test_starter fade-in" id="start_panel">
 
     <h2 id="test_title">True Colors Personality Test</h2>
     <!-- Instructions for the test -->
@@ -19,16 +18,17 @@
     <p>Then rank the next three letters from 3 to 1 by descending preference. Each group must be ranked before moving on,
         to the next section, with 4 meaning "most like you" to 1 meaning "least like you."</p>
     <p>After each group has been ranked, press submit to continue this process with the next set of words until the test is complete.</p>
-    <button type="button", id="start_button" onclick="window.location.href='quiz'">Begin Test</button>
+    <!-- "Begin Test" button-->
+    <button type="button", id="start_button">Begin Test</button>
 
 </div>
 
-<!-- Body of what quiz should look like -->
-<div class="test_container" id="quiz">
+<!-- Container div for current questions, displays after test begins -->
+<div id="test_container">
+
+    <!-- Each question block has a header, option buttons, and group of words. -->
 
     <div class="question_block">
-
-        <!-- Each question block has a header, option buttons, and group of words. -->
         
         <h2 id="question">Letter A</h2>
 
@@ -49,6 +49,11 @@
             <li>Opportunistic</li>
             <li>Spontaneous</li>
         </ul>
+
+    </div>
+
+    <div class="question_block">
+
         <h2 id="question">Letter B</h2>
 
             <input type="radio" name="answerB" class="answerB" id="4">
@@ -69,6 +74,10 @@
             <li>Responsible</li>
         </ul>
 
+    </div>
+
+    <div class="question_block">
+
         <h2 id="question">Letter C</h2>
 
             <input type="radio" name="answerC" class="answerC" id="4">
@@ -88,15 +97,39 @@
             <li>Harmonious</li>
             <li>Compassionate</li>
         </ul>
+
     </div>
 
-    
+    <div class="question_block">
 
-<button id="submit">Submit Response</button>
+        <h2 id="question">Letter D</h2>
+
+            <input type="radio" name="answerD" class="answerD" id="4">
+            <label for="4" id="four_button">4</label>
+            
+            <input type="radio" name="answerD" class="answerD" id="3">
+            <label for="3" id="three_button">3</label>
+            
+            <input type="radio" name="answerD" class="answerD" id="2">
+            <label for="2" id="two_button">2</label>
+            
+            <input type="radio" name="answerD" class="answerD" id="1">
+            <label for="1" id="one_button">1</label>
+
+        <ul>
+            <li>Verstile</li>
+            <li>Inventive</li>
+            <li>Competent</li>
+        </ul>
+        
+    </div>
+
+    <button id="submit">Submit Response</button>
 
 </div>
 
 </body>
+
 <script src="/static/app.js"></script>
 
 </html>
