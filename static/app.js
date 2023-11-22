@@ -1,6 +1,16 @@
-document.getElementById('start_button').addEventListener('click', function(event) {
+const test_container = document.getElementById('test_container');
+test_container.style.display = 'none';
+
+start_button.addEventListener('click', () => {
+    const start_panel = document.getElementById('start_panel');
+    start_panel.style.display = 'none';
+    test_container.style.display = 'contents';
+
+})
+
+start_button.addEventListener('click', function(event) {
     event.preventDefault()
-    var description = "hello"
+    var description = "Start Quiz"
     fetch('/quiz', {
         method: 'POST',
         headers: {
@@ -9,57 +19,76 @@ document.getElementById('start_button').addEventListener('click', function(event
         body:
             `description=${description}`
     })
-})
+});
 
-function getSelectedA() {
+function getSelected(letter) {
 
-    const answerEls = document.querySelectorAll(".answerA");
-    let answerA;
+    const answerEls = document.querySelectorAll(`.answer${letter}`);
+    let answer;
 
-    answerEls.forEach((answerElA) => {
-        if(answerElA.checked) {
-            answerA = answerElA.id;
+    answerEls.forEach((answerEl) => {
+        if(answerEl.checked) {
+            answer = answerEl.id
         }
     });
-    return answerA;
+
+    return answer
 }
 
-function getSelectedB() {
+function holdAnswers() {
+    const answerA = getSelected('A');
+    const answerB = getSelected('B');
+    const answerC = getSelected('C');
+    const answerD = getSelected('D');
+    const question1 = [answerA, answerB, answerC, answerD];
 
-    const answerEls = document.querySelectorAll(".answerB");
-    let answerB;
+    const answerE = getSelected('E');
+    const answerF = getSelected('F');
+    const answerG = getSelected('G');
+    const answerH = getSelected('H');
+    const question2 = [answerE, answerF, answerG, answerH];
 
-    answerEls.forEach((answerElB) => {
-        if(answerElB.checked) {
-            answerB = answerElB.id;
-        }
-    });
-    return answerB;
+    const answerI = getSelected('I');
+    const answerJ = getSelected('J');
+    const answerK = getSelected('K');
+    const answerL = getSelected('L')
+    const question3 = [answerI, answerJ, answerK, answerL];
+
+    const answerM = getSelected('M');
+    const answerN = getSelected('N');
+    const answerO = getSelected('O');
+    const answerP = getSelected('P');
+    const question4 = [answerM, answerN, answerO, answerP];
+
+    const answerQ = getSelected('Q');
+    const answerR = getSelected('R');
+    const answerS = getSelected('S');
+    const answerT = getSelected('T')
+    const question5 = [answerQ, answerR, answerS, answerT];
+
+    const answers = [question1, question2, question3, question4, question5];
+    return answers;
 }
 
-function getSelectedC() {
+submit.addEventListener('click', () => {
 
-    const answerEls = document.querySelectorAll(".answerC");
-    let answerC;
+    const answerA = getSelected('A');
 
-    answerEls.forEach((answerElC) => {
-        if(answerElC.checked) {
-            answerC = answerElC.id;
-        }
-    });
-    return answerC;
-}
-
-document.getElementById('submit').addEventListener('click', () => {
-
-    const answerA = getSelectedA();
-    
     console.log(answerA);
 
-    const answerB = getSelectedB();
+    const answerB = getSelected('B');
     console.log(answerB)
 
-    const answerC = getSelectedC();
+    const answerC = getSelected('C');
     console.log(answerC)
-    
-    });
+
+    const answerD = getSelected('D');
+    console.log(answerD)
+
+    const answers = holdAnswers();
+
+    for (question in answers) {
+       console.log(answers[question]); 
+    }
+
+    })
