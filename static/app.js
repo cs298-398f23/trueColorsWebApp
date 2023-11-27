@@ -1,14 +1,17 @@
+// Get all test_containers and hide them
 const test_container = document.getElementById('test_container');
 const test_container_2 = document.getElementById('test_container_2');
 const test_container_3 = document.getElementById('test_container_3');
 const test_container_4 = document.getElementById('test_container_4');
 const test_container_5 = document.getElementById('test_container_5');
+
 test_container.style.display = 'none';
 test_container_2.style.display = 'none';
 test_container_3.style.display = 'none';
 test_container_4.style.display = 'none';
 test_container_5.style.display = 'none';
 
+// Event listener to start test and hide start panel
 start_button.addEventListener('click', () => {
     const start_panel = document.getElementById('start_panel');
     start_panel.style.display = 'none';
@@ -16,6 +19,7 @@ start_button.addEventListener('click', () => {
 
 })
 
+// Event listener placeholder(?)
 start_button.addEventListener('click', function(event) {
     event.preventDefault()
     var description = "Start Quiz"
@@ -29,6 +33,7 @@ start_button.addEventListener('click', function(event) {
     })
 });
 
+// Event listener to get a selected answer
 function getSelected(letter) {
 
     const answerEls = document.querySelectorAll(`.answer${letter}`);
@@ -43,6 +48,7 @@ function getSelected(letter) {
     return answer
 }
 
+// Event listener to get every selected answer for all 5 groups
 function holdAnswers() {
     const answerA = getSelected('A');
     const answerB = getSelected('B');
@@ -78,6 +84,7 @@ function holdAnswers() {
     return answers;
 }
 
+// Submit buttons to hide current test container and display the next one
 submit_button.addEventListener('click', () => {
 
     test_container.style = 'display: none';
@@ -105,6 +112,7 @@ test_container_5.style = 'display: contents';
     
 })
 
+// Final submit button to get all answers to calculate later [CURRENTLY LOGS IN CONSOLE - DEVELOPMENT]
 submit_button_5.addEventListener('click', () => {
 
     const answerA = getSelected('A');
@@ -174,6 +182,7 @@ submit_button_5.addEventListener('click', () => {
     }
 })
 
+// Back buttons to hide current test container and display the previous one
 back_button.addEventListener('click', () => {
         
     const start_panel = document.getElementById('start_panel');
@@ -208,4 +217,4 @@ back_button_5.addEventListener('click', () => {
         test_container_5.style = 'display: none';
         test_container_4.style = 'display: contents';
     
-})  
+})
