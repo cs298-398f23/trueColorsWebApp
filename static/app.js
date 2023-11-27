@@ -85,7 +85,7 @@ submit_button.addEventListener('click', () => {
         test_container_2.style = 'display: contents'; 
     }
     else {
-        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+        alert("Please do not have duplicate answers AND/OR answer all questions before continuing.")
     }
 
 })
@@ -97,7 +97,7 @@ submit_button_2.addEventListener('click', () => {
         test_container_3.style = 'display: contents';
     }
     else {
-        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+        alert("Please do not have duplicate answers AND/OR answer all questions before continuing.")
     }
 
 })
@@ -109,7 +109,7 @@ submit_button_3.addEventListener('click', () => {
         test_container_4.style = 'display: contents';
     }
     else {
-        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+        alert("Please do not have duplicate answers AND/OR answer all questions before continuing.")
     }
     
 })
@@ -121,7 +121,7 @@ submit_button_4.addEventListener('click', () => {
         test_container_5.style = 'display: contents';
     }
     else {
-        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+        alert("Please do not have duplicate answers AND/OR answer all questions before continuing.")
     }
     
 })
