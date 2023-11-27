@@ -1,5 +1,13 @@
 const test_container = document.getElementById('test_container');
+const test_container_2 = document.getElementById('test_container_2');
+const test_container_3 = document.getElementById('test_container_3');
+const test_container_4 = document.getElementById('test_container_4');
+const test_container_5 = document.getElementById('test_container_5');
 test_container.style.display = 'none';
+test_container_2.style.display = 'none';
+test_container_3.style.display = 'none';
+test_container_4.style.display = 'none';
+test_container_5.style.display = 'none';
 
 start_button.addEventListener('click', () => {
     const start_panel = document.getElementById('start_panel');
@@ -72,8 +80,34 @@ function holdAnswers() {
 
 submit_button.addEventListener('click', () => {
 
-    const answerA = getSelected('A');
+    test_container.style = 'display: none';
+    test_container_2.style = 'display: contents';
 
+})
+
+submit_button_2.addEventListener('click', () => {
+
+    test_container_2.style = 'display: none';
+    test_container_3.style = 'display: contents';
+})
+
+submit_button_3.addEventListener('click', () => {
+    
+    test_container_3.style = 'display: none';
+    test_container_4.style = 'display: contents';
+    
+})
+
+submit_button_4.addEventListener('click', () => {
+    
+test_container_4.style = 'display: none';
+test_container_5.style = 'display: contents';
+    
+})
+
+submit_button_5.addEventListener('click', () => {
+
+    const answerA = getSelected('A');
     console.log(answerA);
 
     const answerB = getSelected('B');
@@ -85,10 +119,58 @@ submit_button.addEventListener('click', () => {
     const answerD = getSelected('D');
     console.log(answerD)
 
+    const answerE = getSelected('E');
+    console.log(answerE)
+
+    const answerF = getSelected('F');
+    console.log(answerF)
+
+    const answerG = getSelected('G');
+    console.log(answerG)
+
+    const answerH = getSelected('H');
+    console.log(answerH)
+
+    const answerI = getSelected('I');
+    console.log(answerI)
+
+    const answerJ = getSelected('J');
+    console.log(answerJ)
+
+    const answerK = getSelected('K');
+    console.log(answerK)
+
+    const answerL = getSelected('L');
+    console.log(answerL)
+
+    const answerM = getSelected('M');
+    console.log(answerM)
+
+    const answerN = getSelected('N');
+    console.log(answerN)
+
+    const answerO = getSelected('O');
+    console.log(answerO)
+
+    const answerP = getSelected('P');
+    console.log(answerP)
+
+    const answerQ = getSelected('Q');
+    console.log(answerQ)
+
+    const answerR = getSelected('R');
+    console.log(answerR)
+
+    const answerS = getSelected('S');
+    console.log(answerS)
+
+    const answerT = getSelected('T');
+    console.log(answerT)
+
     const answers = holdAnswers();
-
+        
     for (question in answers) {
-       console.log(answers[question]); 
+        console.log(answers[question]); 
     }
-
-    })
+    
+})
