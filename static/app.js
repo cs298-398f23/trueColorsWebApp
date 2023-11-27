@@ -172,5 +172,40 @@ submit_button_5.addEventListener('click', () => {
     for (question in answers) {
         console.log(answers[question]); 
     }
+})
+
+back_button.addEventListener('click', () => {
+        
+    const start_panel = document.getElementById('start_panel');
+    test_container.style = 'display: none';
+    start_panel.style = 'display:';
+
+})
+
+back_button_2.addEventListener('click', () => {
+            
+        test_container_2.style = 'display: none';
+        test_container.style = 'display: contents';
     
 })
+    
+back_button_3.addEventListener('click', () => {
+            
+        test_container_3.style = 'display: none';
+        test_container_2.style = 'display: contents';
+    
+})
+
+back_button_4.addEventListener('click', () => {
+            
+        test_container_4.style = 'display: none';
+        test_container_3.style = 'display: contents';
+    
+})
+
+back_button_5.addEventListener('click', () => {
+            
+        test_container_5.style = 'display: none';
+        test_container_4.style = 'display: contents';
+    
+})  
