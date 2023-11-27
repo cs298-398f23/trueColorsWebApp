@@ -1,17 +1,14 @@
-// Get all test_containers and hide them
 const test_container = document.getElementById('test_container');
 const test_container_2 = document.getElementById('test_container_2');
 const test_container_3 = document.getElementById('test_container_3');
 const test_container_4 = document.getElementById('test_container_4');
 const test_container_5 = document.getElementById('test_container_5');
-
 test_container.style.display = 'none';
 test_container_2.style.display = 'none';
 test_container_3.style.display = 'none';
 test_container_4.style.display = 'none';
 test_container_5.style.display = 'none';
 
-// Event listener to start test and hide start panel
 start_button.addEventListener('click', () => {
     const start_panel = document.getElementById('start_panel');
     start_panel.style.display = 'none';
@@ -19,7 +16,6 @@ start_button.addEventListener('click', () => {
 
 })
 
-// Event listener placeholder(?)
 start_button.addEventListener('click', function(event) {
     event.preventDefault()
     var description = "Start Quiz"
@@ -33,7 +29,6 @@ start_button.addEventListener('click', function(event) {
     })
 });
 
-// Event listener to get a selected answer
 function getSelected(letter) {
 
     const answerEls = document.querySelectorAll(`.answer${letter}`);
@@ -48,7 +43,6 @@ function getSelected(letter) {
     return answer
 }
 
-// Event listener to get every selected answer for all 5 groups
 function holdAnswers() {
     const answerA = getSelected('A');
     const answerB = getSelected('B');
@@ -84,36 +78,57 @@ function holdAnswers() {
     return answers;
 }
 
-// Submit buttons to hide current test container and display the next one
 submit_button.addEventListener('click', () => {
 
-    test_container.style = 'display: none';
-    test_container_2.style = 'display: contents';
+    if(checkAnswersRecorded('A', 'B', 'C', 'D')) {
+        test_container.style = 'display: none';
+        test_container_2.style = 'display: contents'; 
+    }
+    else {
+        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+    }
 
 })
 
 submit_button_2.addEventListener('click', () => {
 
-    test_container_2.style = 'display: none';
-    test_container_3.style = 'display: contents';
+    if(checkAnswersRecorded('E', 'F', 'G', 'H')) {
+        test_container_2.style = 'display: none';
+        test_container_3.style = 'display: contents';
+    }
+    else {
+        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+    }
+
 })
 
 submit_button_3.addEventListener('click', () => {
-    
-    test_container_3.style = 'display: none';
-    test_container_4.style = 'display: contents';
+
+    if(checkAnswersRecorded('I', 'J', 'K', 'L')) {
+        test_container_3.style = 'display: none';
+        test_container_4.style = 'display: contents';
+    }
+    else {
+        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+    }
     
 })
 
 submit_button_4.addEventListener('click', () => {
-    
-test_container_4.style = 'display: none';
-test_container_5.style = 'display: contents';
+
+    if (checkAnswersRecorded('M', 'N', 'O', 'P')) {
+        test_container_4.style = 'display: none';
+        test_container_5.style = 'display: contents';
+    }
+    else {
+        alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+    }
     
 })
 
-// Final submit button to get all answers to calculate later [CURRENTLY LOGS IN CONSOLE - DEVELOPMENT]
 submit_button_5.addEventListener('click', () => {
+
+    if (checkAnswersRecorded('Q', 'R', 'S', 'T')) {
 
     const answerA = getSelected('A');
     console.log(answerA);
@@ -180,9 +195,12 @@ submit_button_5.addEventListener('click', () => {
     for (question in answers) {
         console.log(answers[question]); 
     }
+}
+else {
+    alert("Please do not have duplicate answers AND/OR answer all questions before submitting.")
+}
 })
 
-// Back buttons to hide current test container and display the previous one
 back_button.addEventListener('click', () => {
         
     const start_panel = document.getElementById('start_panel');
@@ -218,3 +236,23 @@ back_button_5.addEventListener('click', () => {
         test_container_4.style = 'display: contents';
     
 })
+
+function checkAnswersRecorded(letter1, letter2, letter3, letter4) {
+    // Get the value for each question
+    const answer1 = getSelected(letter1);
+    const answer2 = getSelected(letter2);
+    const answer3 = getSelected(letter3);
+    const answer4 = getSelected(letter4);
+    question = [answer1, answer2, answer3, answer4];
+    if (question.includes(undefined)) {
+        return false; // If any question has nothing selected, return false
+    }
+    for (i = 0; i < question.length; i++) {
+        for (j = i + 1; j < question.length; j++) {
+            if (question[i] == question[j]) {
+                return false;
+            }
+        }
+    }
+    return true; //If all answers are different then return true
+}
