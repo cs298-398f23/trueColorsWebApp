@@ -44,7 +44,7 @@ ul li {
   max-width: 100%;
 }
 
-#start_button {
+.special_button {
   background-color:rgb(21, 180, 180);
   color: #fff;
   border: none;
@@ -58,7 +58,7 @@ ul li {
   padding: 1.3rem;
 }
 
-#start_button:hover {
+.special_button:hover {
   background-color: darkcyan;
 }
 
@@ -95,6 +95,17 @@ ul li {
   background-color: darkcyan;
 }
 
+.results {
+  padding: 4rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 400px;
+  height: 400px;
+  max-width: 100%;
+}
+
 .fade-in {
   opacity: 0;
   animation: fade-in 1s ease-in-out forwards;
@@ -103,6 +114,12 @@ ul li {
 @keyframes fade-in {
   100% {
       opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 0;
   }
 }
 
