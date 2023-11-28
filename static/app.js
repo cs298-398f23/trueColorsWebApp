@@ -1,15 +1,17 @@
-// Get all test_containers and hide them
+// Get all test_containers (and results panel) and hide them
 const test_container = document.getElementById('test_container');
 const test_container_2 = document.getElementById('test_container_2');
 const test_container_3 = document.getElementById('test_container_3');
 const test_container_4 = document.getElementById('test_container_4');
 const test_container_5 = document.getElementById('test_container_5');
+const results_panel = document.getElementById('results_panel');
 
 test_container.style.display = 'none';
 test_container_2.style.display = 'none';
 test_container_3.style.display = 'none';
 test_container_4.style.display = 'none';
 test_container_5.style.display = 'none';
+results_panel.style.display = 'none';
 
 // Event listener to start test and hide start panel
 start_button.addEventListener('click', () => {
@@ -160,6 +162,7 @@ submit_button_5.addEventListener('click', () => {
 
         const result_color = getHighestScore();
         test_container_5.style = 'display: none';
+        results_panel.style = 'display:';
 
         console.log(result_color);
 
@@ -205,6 +208,13 @@ back_button_5.addEventListener('click', () => {
             
         test_container_5.style = 'display: none';
         test_container_4.style = 'display: contents';
+    
+})
+
+// Retake button to refresh the page and start the test over
+retake_button.addEventListener('click', () => {
+                
+    location.reload();
     
 })
 
