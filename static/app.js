@@ -46,40 +46,61 @@ function getSelected(letter) {
     return answer
 }
 
-// Event listener to get every selected answer for all 5 groups [CHECK IF LOOP CAN BE DONE]
-function holdAnswers() {
+// Function to calculate the scores for each of the four colors
+function getScores() {
+
     const answerA = getSelected('A');
-    const answerB = getSelected('B');
-    const answerC = getSelected('C');
-    const answerD = getSelected('D');
-    const question1 = [answerA, answerB, answerC, answerD];
-
-    const answerE = getSelected('E');
-    const answerF = getSelected('F');
-    const answerG = getSelected('G');
     const answerH = getSelected('H');
-    const question2 = [answerE, answerF, answerG, answerH];
-
-    const answerI = getSelected('I');
-    const answerJ = getSelected('J');
     const answerK = getSelected('K');
-    const answerL = getSelected('L')
-    const question3 = [answerI, answerJ, answerK, answerL];
-
-    const answerM = getSelected('M');
     const answerN = getSelected('N');
-    const answerO = getSelected('O');
-    const answerP = getSelected('P');
-    const question4 = [answerM, answerN, answerO, answerP];
-
-    const answerQ = getSelected('Q');
-    const answerR = getSelected('R');
     const answerS = getSelected('S');
-    const answerT = getSelected('T')
-    const question5 = [answerQ, answerR, answerS, answerT];
+    const score_orange = parseInt(answerA) + parseInt(answerH) + parseInt(answerK) + parseInt(answerN) + parseInt(answerS);
 
-    const answers = [question1, question2, question3, question4, question5];
-    return answers;
+    const answerC = getSelected('C');
+    const answerF = getSelected('F');
+    const answerJ = getSelected('J');
+    const answerO = getSelected('O');
+    const answerR = getSelected('R');
+    const score_blue = parseInt(answerC) + parseInt(answerF) + parseInt(answerJ) + parseInt(answerO) + parseInt(answerR);
+
+    const answerB = getSelected('B');
+    const answerG = getSelected('G');
+    const answerI = getSelected('I');
+    const answerM = getSelected('M');
+    const answerT = getSelected('T');
+    const score_gold = parseInt(answerB) + parseInt(answerG) + parseInt(answerI) + parseInt(answerM) + parseInt(answerT);
+
+    const answerD = getSelected('D');
+    const answerE = getSelected('E');
+    const answerL = getSelected('L');
+    const answerP = getSelected('P');
+    const answerQ = getSelected('Q');
+    const score_green = parseInt(answerD) + parseInt(answerE) + parseInt(answerL) + parseInt(answerP) + parseInt(answerQ);
+
+    const scores = [score_orange, score_blue, score_gold, score_green];
+    return scores;
+}
+
+// Function to get the highest score and return its associated color
+function getHighestScore() {
+    const scores = getScores();
+    const highest_score = Math.max(...scores);
+
+    if (highest_score == scores[0]) {
+        return 'ORANGE';
+    }
+
+    else if (highest_score == scores[1]) {
+        return 'BLUE';
+    }
+
+    else if (highest_score == scores[2]) {
+        return 'GOLD';
+    }
+
+    else {
+        return 'GREEN';
+    }
 }
 
 // Submit buttons to hide current test container and display the next one
@@ -131,80 +152,23 @@ submit_button_4.addEventListener('click', () => {
     
 })
 
-// Final submit button to get all answers to calculate later [CURRENTLY LOGS IN CONSOLE]
+// Final submit button that determines the user's color and displays results [CURRENTLY LOGS IN CONSOLE]
 submit_button_5.addEventListener('click', () => {
 
+    // If all questions are answered and unique, calculate the score of each color
     if (checkAnswersRecorded('Q', 'R', 'S', 'T')) {
 
-    const answerA = getSelected('A');
-    console.log(answerA);
+        const result_color = getHighestScore();
+        test_container_5.style = 'display: none';
 
-    const answerB = getSelected('B');
-    console.log(answerB)
+        console.log(result_color);
 
-    const answerC = getSelected('C');
-    console.log(answerC)
-
-    const answerD = getSelected('D');
-    console.log(answerD)
-
-    const answerE = getSelected('E');
-    console.log(answerE)
-
-    const answerF = getSelected('F');
-    console.log(answerF)
-
-    const answerG = getSelected('G');
-    console.log(answerG)
-
-    const answerH = getSelected('H');
-    console.log(answerH)
-
-    const answerI = getSelected('I');
-    console.log(answerI)
-
-    const answerJ = getSelected('J');
-    console.log(answerJ)
-
-    const answerK = getSelected('K');
-    console.log(answerK)
-
-    const answerL = getSelected('L');
-    console.log(answerL)
-
-    const answerM = getSelected('M');
-    console.log(answerM)
-
-    const answerN = getSelected('N');
-    console.log(answerN)
-
-    const answerO = getSelected('O');
-    console.log(answerO)
-
-    const answerP = getSelected('P');
-    console.log(answerP)
-
-    const answerQ = getSelected('Q');
-    console.log(answerQ)
-
-    const answerR = getSelected('R');
-    console.log(answerR)
-
-    const answerS = getSelected('S');
-    console.log(answerS)
-
-    const answerT = getSelected('T');
-    console.log(answerT)
-
-    const answers = holdAnswers();
-        
-    for (question in answers) {
-        console.log(answers[question]); 
     }
-}
-else {
+
+    else {
         alert("Please do not have duplicate answers and make sure to answer all questions before submitting.")
-}
+    }
+
 })
 
 // Back buttons to hide current test container and display the previous one
