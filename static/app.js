@@ -164,7 +164,9 @@ submit_button_5.addEventListener('click', () => {
         test_container_5.style = 'display: none';
         results_panel.style = 'display:';
 
-        console.log(result_color);
+        const user_result = document.getElementById('user_result')
+        user_result.textContent = result_color;
+        user_result.style = `color: ${result_color}`;
 
     }
 
