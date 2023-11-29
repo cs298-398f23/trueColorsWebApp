@@ -55,6 +55,7 @@ ul li {
   cursor: pointer;
   font-size: 1.2rem;
   font-family: inherit;
+  margin-top: 6%;
   padding: 1.3rem;
 }
 
@@ -121,6 +122,16 @@ ul li {
   overflow: hidden;
   width: 450px;
   height: 450px;
+  max-width: 100%;
+}
+
+.info {
+  padding: 4rem;
+  background-color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 600px;
   max-width: 100%;
 }
 
