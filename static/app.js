@@ -5,6 +5,7 @@ const test_container_3 = document.getElementById('test_container_3');
 const test_container_4 = document.getElementById('test_container_4');
 const test_container_5 = document.getElementById('test_container_5');
 const results_panel = document.getElementById('results_panel');
+const info_panel = document.getElementById('info_panel');
 
 test_container.style.display = 'none';
 test_container_2.style.display = 'none';
@@ -12,6 +13,7 @@ test_container_3.style.display = 'none';
 test_container_4.style.display = 'none';
 test_container_5.style.display = 'none';
 results_panel.style.display = 'none';
+info_panel.style.display = 'none';
 
 // Event listener to start test and hide start panel
 start_button.addEventListener('click', () => {
@@ -164,7 +166,7 @@ submit_button_5.addEventListener('click', () => {
         test_container_5.style = 'display: none';
         results_panel.style = 'display:';
 
-        const user_result = document.getElementById('user_result')
+        const user_result = document.getElementById('user_result');
         user_result.textContent = result_color;
         user_result.style = `color: ${result_color}`;
 
@@ -213,12 +215,50 @@ back_button_5.addEventListener('click', () => {
     
 })
 
+// Back button to hide info panel and display results panel again
+back_button_info.addEventListener('click', () => {
+            
+    info_panel.style = 'display: none';
+    results_panel.style = 'display:';
+
+})
+
 // Retake button to refresh the page and start the test over
 retake_button.addEventListener('click', () => {
                 
     location.reload();
     
 })
+
+// Info button to hide results panel and display the color's description
+info_button.addEventListener('click', () => {
+    
+    results_panel.style = 'display: none';
+    info_panel.style = 'display:';
+
+    const user_description = document.getElementById('user_description');
+    user_description.textContent = getColorDescription(getHighestScore());
+
+})
+
+// Function that tells the user about their color
+function getColorDescription(color) {
+    if (color == 'ORANGE') {
+        return '[PLACEHOLDER] Your True Color is orange! You are a fun-loving, spontaneous, and energetic person. You are a natural performer and thrive in social situations. You are a great storyteller and love to be the center of attention. You are a great problem solver and are always looking for new ways to do things. You are a risk taker and love to live in the moment. You are a great team player';
+    }
+
+    else if (color == 'GOLD') {
+        return '[PLACEHOLDER] Your True Color is gold! You are a loyal, organized, and responsible person. You are a natural planner and thrive in structured environments. You are a great leader and love to take charge. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
+    }
+
+    else if (color == 'BLUE') {
+        return '[PLACEHOLDER] Your True Color is blue! You are a caring, creative, and compassionate person. You are a natural helper and thrive in environments where you can help others. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
+    } 
+
+    else if (color == 'GREEN') {
+        return '[PLACEHOLDER] Your True Color is green! You are a logical, analytical, and objective person. You are a natural problem solver and thrive in environments where you can solve problems. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
+    }
+}
 
 // Function to verify all 4 questions have been uniquely answered
 function checkAnswersRecorded(letter1, letter2, letter3, letter4) {
