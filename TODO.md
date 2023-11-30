@@ -1,17 +1,6 @@
-# TODO - HTML Functionality
-
-5. Once all 5 sections are completed:
-    - hide instructions, question block, and "Submit" button
-
-and display a results box with the following:
-    
-    - "Results" header
-    - "Your color is:" text
-    - "[USER'S COLOR]" in the corresponding color the user is.
-
-At this point, don't worry about the database/viewing other results. Make sure that HTML is working as intended FIRST AND FOREMOST.
-
 # DONE
+
+# TODO - HTML Functionality
 
 1. Display ONLY test starter and hide it once "Begin Test" is pressed. - DONE
 
@@ -27,3 +16,14 @@ At this point, don't worry about the database/viewing other results. Make sure t
     If the user tries to submit more than one of the same number, display a message stating this is not allowed. - DONE
 
 4. Once above is completed, pressing "Submit" should update the four question blocks by using a JavaScript function to update the 4 letters and each group of words. - DONE, multiple question blocks in HTML
+
+5. Once all 5 sections are completed: - DONE, with additional "color description" panel
+    - hide instructions, question block, and "Submit" button
+
+and display a results box with the following:
+    
+    - "Results" header
+    - "Your color is:" text
+    - "[USER'S COLOR]" in the corresponding color the user is.
+
+At this point, don't worry about the database/viewing other results. Make sure that HTML is working as intended FIRST AND FOREMOST.
