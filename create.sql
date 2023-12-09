@@ -3,7 +3,7 @@ CREATE DATABASE test_db;
 USE test_db;
 
 CREATE TABLE IF NOT EXISTS user_colors (
-  user_id INT(11) NOT NULL AUTO_INCREMENT,
+  user_id VARCHAR(256) NOT NULL,
   result_color VARCHAR(15),
   PRIMARY KEY (user_id)
 );
