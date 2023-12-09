@@ -7,6 +7,14 @@ An online/web version of the _True Colors_ personality assessment typically comp
 - Madison Meyers
 - Michael Romero
 
+**Creating Secret Value**
+
+- python3
+
+- import secrets
+
+- print(secrets.token_hex())
+
 **EC2 Instance Steps**
 
 - ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>
