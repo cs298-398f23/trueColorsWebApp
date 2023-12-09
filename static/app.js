@@ -1,85 +1,116 @@
-// Get all test_containers (and results panel) and hide them
+// Get main test panels and hide them
+const start_panel = document.getElementById('start_panel');
 const test_container = document.getElementById('test_container');
-const test_container_2 = document.getElementById('test_container_2');
-const test_container_3 = document.getElementById('test_container_3');
-const test_container_4 = document.getElementById('test_container_4');
-const test_container_5 = document.getElementById('test_container_5');
 const results_panel = document.getElementById('results_panel');
 const info_panel = document.getElementById('info_panel');
 
 test_container.style.display = 'none';
-test_container_2.style.display = 'none';
-test_container_3.style.display = 'none';
-test_container_4.style.display = 'none';
-test_container_5.style.display = 'none';
 results_panel.style.display = 'none';
 info_panel.style.display = 'none';
 
-// Event listener to start test and hide start panel
-start_button.addEventListener('click', () => {
-    const start_panel = document.getElementById('start_panel');
-    start_panel.style.display = 'none';
-    test_container.style.display = 'contents';
-})
+// Get all templates for each letter and their associated words
+const letter_1 = document.getElementById('letter_1');
+const a_word_1 = document.getElementById('a_word_1');
+const a_word_2 = document.getElementById('a_word_2');
+const a_word_3 = document.getElementById('a_word_3');
 
-// Event listener placeholder(? not too sure just yet, tbh)
-start_button.addEventListener('click', function(event) {
-    event.preventDefault()
-    var description = "Start Quiz"
-    fetch('/quiz', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:
-            `description=${description}`
-    })
-});
+const letter_2 = document.getElementById('letter_2');
+const b_word_1 = document.getElementById('b_word_1');
+const b_word_2 = document.getElementById('b_word_2');
+const b_word_3 = document.getElementById('b_word_3');
 
-// Event listener to get a selected answer
-function getSelected(letter) {
-    const answerEls = document.querySelectorAll(`.answer${letter}`);
-    let answer;
+const letter_3 = document.getElementById('letter_3');
+const c_word_1 = document.getElementById('c_word_1');
+const c_word_2 = document.getElementById('c_word_2');
+const c_word_3 = document.getElementById('c_word_3');
 
-    answerEls.forEach((answerEl) => {
-        if(answerEl.checked) {
-            answer = answerEl.id
-        }
-    });
+const letter_4 = document.getElementById('letter_4');
+const d_word_1 = document.getElementById('d_word_1');
+const d_word_2 = document.getElementById('d_word_2');
+const d_word_3 = document.getElementById('d_word_3');
 
-    return answer
+// Define arrays to store each question group's answers
+let answers_1 = [];
+let answers_2 = [];
+let answers_3 = [];
+let answers_4 = [];
+let answers_5 = [];
+
+// Define group variable and load first set of questions
+let group = 0;
+loadQuestions();
+
+// Function that ensures each new question doesn't already have an option selected
+function deselectAnswers() {
+
+    const answerEls = document.querySelectorAll(".answer");
+    answerEls.forEach(answerEl => answerEl.checked = false);
+
 }
+
+// Function that gets question information from the database
+async function fetchQuestionsFromDatabase() {
+    const response = await fetch(`/getQuestions?group=${group}`);
+    const data = await response.json();
+    return data;
+}
+
+// Function that loads the current question information
+async function loadQuestions() {
+
+    deselectAnswers();
+    group++;
+    const questions = await fetchQuestionsFromDatabase();
+
+    // Load questions into HTML
+    letter_1.innerText = questions[0][0];
+    a_word_1.innerText = questions[0][1];
+    a_word_2.innerText = questions[0][2];
+    a_word_3.innerText = questions[0][3];
+
+    letter_2.innerText = questions[0][4];
+    b_word_1.innerText = questions[0][5];
+    b_word_2.innerText = questions[0][6];
+    b_word_3.innerText = questions[0][7];
+
+    letter_3.innerText = questions[0][8];
+    c_word_1.innerText = questions[0][9];
+    c_word_2.innerText = questions[0][10];
+    c_word_3.innerText = questions[0][11];
+
+    letter_4.innerText = questions[0][12];
+    d_word_1.innerText = questions[0][13];
+    d_word_2.innerText = questions[0][14];
+    d_word_3.innerText = questions[0][15];
+
+}
+
+// Event listener to hide start panel and begin test
+start_button.addEventListener('click', () => {
+
+    start_panel.style = 'display: none';
+    test_container.style = 'display: contents';
+
+})
 
 // Function to calculate the scores for each of the four colors
 function getScores() {
 
-    const answerA = getSelected('A');
-    const answerH = getSelected('H');
-    const answerK = getSelected('K');
-    const answerN = getSelected('N');
-    const answerS = getSelected('S');
-    const score_orange = parseInt(answerA) + parseInt(answerH) + parseInt(answerK) + parseInt(answerN) + parseInt(answerS);
+    // Get score for ORANGE - AHKNS
+    const score_orange = parseInt(answers_1[0]) + parseInt(answers_2[3]) + parseInt(answers_3[2]) + parseInt(answers_4[1])
+                       + parseInt(answers_5[2]);
 
-    const answerC = getSelected('C');
-    const answerF = getSelected('F');
-    const answerJ = getSelected('J');
-    const answerO = getSelected('O');
-    const answerR = getSelected('R');
-    const score_blue = parseInt(answerC) + parseInt(answerF) + parseInt(answerJ) + parseInt(answerO) + parseInt(answerR);
+    // Get score for BLUE - CFJOR
+    const score_blue = parseInt(answers_1[2]) + parseInt(answers_2[1]) + parseInt(answers_3[1]) + parseInt(answers_4[2]) 
+                     + parseInt(answers_5[1]);
 
-    const answerB = getSelected('B');
-    const answerG = getSelected('G');
-    const answerI = getSelected('I');
-    const answerM = getSelected('M');
-    const answerT = getSelected('T');
-    const score_gold = parseInt(answerB) + parseInt(answerG) + parseInt(answerI) + parseInt(answerM) + parseInt(answerT);
+    // Get score for GOLD - BGIMT
+    const score_gold = parseInt(answers_1[1]) + parseInt(answers_2[2]) + parseInt(answers_3[0]) + parseInt(answers_4[0]) 
+                     + parseInt(answers_5[3]);
 
-    const answerD = getSelected('D');
-    const answerE = getSelected('E');
-    const answerL = getSelected('L');
-    const answerP = getSelected('P');
-    const answerQ = getSelected('Q');
-    const score_green = parseInt(answerD) + parseInt(answerE) + parseInt(answerL) + parseInt(answerP) + parseInt(answerQ);
+    // Get score for GREEN - DELPQ
+    const score_green = parseInt(answers_1[3]) + parseInt(answers_2[0]) + parseInt(answers_3[3]) + parseInt(answers_4[3]) 
+                      + parseInt(answers_5[0])
 
     const scores = [score_orange, score_blue, score_gold, score_green];
     return scores;
@@ -107,127 +138,164 @@ function getHighestScore() {
     }
 }
 
-// Submit buttons to hide current test container and display the next one
-submit_button.addEventListener('click', () => {
+// Function to get the answers of the current group of words
+function getAnswers() {
 
-    if(checkAnswersRecorded('A', 'B', 'C', 'D')) {
-        test_container.style = 'display: none';
-        test_container_2.style = 'display: contents'; 
+    const questionBlocks = document.querySelectorAll('.question_block');
+    let answers = [];
+
+    // For each question block, get the answer that was selected
+    questionBlocks.forEach((questionBlock) => {
+        const answerEls = questionBlock.querySelectorAll('.answer');
+        let answerFound = false;
+
+        answerEls.forEach((answerEl) => {
+            if (answerEl.checked) {
+                answers.push(answerEl.id); // If answer is found, add it to answers
+                answerFound = true;
+            }
+        });
+
+        if (!answerFound) {
+            answers.push(undefined); // If answer is not found, add undefined to signal a missing answer
+        }
+    });
+
+    return answers;
+
+}
+
+// Function to check if all answers have are unique and have been selected
+function checkAnswersRecorded(answers) {
+
+    // If no answer selected, return false
+    if (answers.includes(undefined)) {
+        return false;
     }
-    else {
-        alert("Please do not have duplicate answers and make sure to answer all questions before continuing.")
+
+    // If duplicate answers, return false
+    for (i = 0; i < answers.length; i++) {
+        for (j = i + 1; j < answers.length; j++) {
+            if (answers[i] == answers[j]) {
+                return false;
+            }
+        }
     }
 
-})
-
-submit_button_2.addEventListener('click', () => {
-
-    if(checkAnswersRecorded('E', 'F', 'G', 'H')) {
-        test_container_2.style = 'display: none';
-        test_container_3.style = 'display: contents';
-    }
-    else {
-        alert("Please do not have duplicate answers and make sure to answer all questions before continuing.")
-    }
-
-})
-
-submit_button_3.addEventListener('click', () => {
-
-    if(checkAnswersRecorded('I', 'J', 'K', 'L')) {
-        test_container_3.style = 'display: none';
-        test_container_4.style = 'display: contents';
-    }
-    else {
-        alert("Please do not have duplicate answers and make sure to answer all questions before continuing.")
+    // Store answers in correct array
+    if (group == 1) {
+        answers_1 = answers;
     }
     
-})
-
-submit_button_4.addEventListener('click', () => {
-
-    if (checkAnswersRecorded('M', 'N', 'O', 'P')) {
-        test_container_4.style = 'display: none';
-        test_container_5.style = 'display: contents';
+    else if (group == 2) {
+        answers_2 = answers;
     }
+    
+    else if (group == 3) {
+        answers_3 = answers;
+    }
+    
+    else if (group == 4) {
+        answers_4 = answers;
+    }
+
+    else {
+        answers_5 = answers;
+    }
+
+    return true;
+}
+
+// Function to display the results panel and store the user's result in the database
+function displayResults() {
+
+    // Hide test container and display results panel
+    test_container.style = 'display: none';
+    results_panel.style = 'display:';
+
+    // Get user's result and display it
+    const result_color = getHighestScore();
+    const user_result = document.getElementById('user_result');
+
+    user_result.textContent = result_color;
+    user_result.style = `color: ${result_color}`;
+
+    // Store user's result in database
+    fetch(`/storeResult/${result_color}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({result: result_color})
+    });
+
+}
+
+// Submit button to validate answers and update questions
+submit_button.addEventListener('click', async () => {
+
+    const answers = getAnswers();
+    const answerStatus = checkAnswersRecorded(answers);
+
+    // If all answers are valid, update questions
+    if (answerStatus) {
+
+        // If last question, hide test container and display results panel
+        if (group == 5) {
+
+            displayResults();
+
+        }
+
+        // Else, update questions and change buttons as needed
+        else {
+
+            // Change 'Begin Test' to 'Resume Test' if test is in progress
+            if (group >= 1) {
+                start_button.textContent = 'Resume Test';
+            }
+
+            // Change 'Next' to 'Submit Test' if last question
+            if (group == 4) {
+                submit_button.textContent = 'Submit Test'; 
+            }
+
+        loadQuestions();
+
+        }
+
+    }
+
+    // Else, alert user to select all answers and make sure they are unique
     else {
         alert("Please do not have duplicate answers and make sure to answer all questions before continuing.")
     }
-    
-})
-
-// Final submit button that determines the user's color and displays results [CURRENTLY LOGS IN CONSOLE]
-submit_button_5.addEventListener('click', () => {
-
-    // If all questions are answered and unique, calculate the score of each color
-    if (checkAnswersRecorded('Q', 'R', 'S', 'T')) {
-
-        const result_color = getHighestScore();
-        test_container_5.style = 'display: none';
-        results_panel.style = 'display:';
-
-        const user_result = document.getElementById('user_result');
-        user_result.textContent = result_color;
-        user_result.style = `color: ${result_color}`;
-
-    }
-
-    else {
-        alert("Please do not have duplicate answers and make sure to answer all questions before submitting.")
-    }
 
 })
 
-// Back buttons to hide current test container and display the previous one
+// Back button to hide current test container and display the instructions
 back_button.addEventListener('click', () => {
-        
-    const start_panel = document.getElementById('start_panel');
+
     test_container.style = 'display: none';
     start_panel.style = 'display:';
 
 })
 
-back_button_2.addEventListener('click', () => {
-            
-        test_container_2.style = 'display: none';
-        test_container.style = 'display: contents';
-    
-})
-    
-back_button_3.addEventListener('click', () => {
-            
-        test_container_3.style = 'display: none';
-        test_container_2.style = 'display: contents';
-    
-})
-
-back_button_4.addEventListener('click', () => {
-            
-        test_container_4.style = 'display: none';
-        test_container_3.style = 'display: contents';
-    
-})
-
-back_button_5.addEventListener('click', () => {
-            
-        test_container_5.style = 'display: none';
-        test_container_4.style = 'display: contents';
-    
-})
-
-// Back button to hide info panel and display results panel again
-back_button_info.addEventListener('click', () => {
-            
-    info_panel.style = 'display: none';
-    results_panel.style = 'display:';
-
-})
-
-// Retake button to refresh the page and start the test over
+// Retake button to hide results panel, display the start panel, and reset the test
 retake_button.addEventListener('click', () => {
-                
-    location.reload();
+
+    // Resetting display properties
+    results_panel.style = 'display: none';
+    start_panel.style = 'display:';
     
+    // Reset the group to 0 when retaking the test
+    group = 0;
+    loadQuestions();
+
+    // Reset button text
+    start_button.textContent = 'Begin Test';
+    submit_button.textContent = 'Next';
+
 })
 
 // Info button to hide results panel and display the color's description
@@ -237,49 +305,33 @@ info_button.addEventListener('click', () => {
     info_panel.style = 'display:';
 
     const user_description = document.getElementById('user_description');
-    user_description.textContent = getColorDescription(getHighestScore());
+    user_description.innerHTML = getColorDescription(getHighestScore());
+
+})
+
+// Info back button to hide info panel and display results panel again
+back_button_info.addEventListener('click', () => {
+            
+    info_panel.style = 'display: none';
+    results_panel.style = 'display:';
 
 })
 
 // Function that tells the user about their color
 function getColorDescription(color) {
     if (color == 'ORANGE') {
-        return '[PLACEHOLDER] Your True Color is orange! You are a fun-loving, spontaneous, and energetic person. You are a natural performer and thrive in social situations. You are a great storyteller and love to be the center of attention. You are a great problem solver and are always looking for new ways to do things. You are a risk taker and love to live in the moment. You are a great team player';
+        return '[PLACEHOLDER] Your True Color is ORANGE! You are a fun-loving, spontaneous, and energetic person. You are a natural performer and thrive in social situations. You are a great storyteller and love to be the center of attention. You are a great problem solver and are always looking for new ways to do things. You are a risk taker and love to live in the moment. You are a great team player';
     }
 
     else if (color == 'GOLD') {
-        return '[PLACEHOLDER] Your True Color is gold! You are a loyal, organized, and responsible person. You are a natural planner and thrive in structured environments. You are a great leader and love to take charge. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
+        return '[PLACEHOLDER] Your True Color is GOLD! You are a loyal, organized, and responsible person. You are a natural planner and thrive in structured environments. You are a great leader and love to take charge. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
     }
 
     else if (color == 'BLUE') {
-        return '[PLACEHOLDER] Your True Color is blue! You are a caring, creative, and compassionate person. You are a natural helper and thrive in environments where you can help others. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
+        return '[PLACEHOLDER] Your True Color is BLUE! You are a caring, creative, and compassionate person. You are a natural helper and thrive in environments where you can help others. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
     } 
 
     else if (color == 'GREEN') {
-        return '[PLACEHOLDER] Your True Color is green! You are a logical, analytical, and objective person. You are a natural problem solver and thrive in environments where you can solve problems. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
+        return '[PLACEHOLDER] Your True Color is GREEN! You are a logical, analytical, and objective person. You are a natural problem solver and thrive in environments where you can solve problems. You are a great listener and love to help others. You are a great team player and are always looking for ways to improve yourself and others. You are a great problem solver';
     }
-}
-
-// Function to verify all 4 questions have been uniquely answered
-function checkAnswersRecorded(letter1, letter2, letter3, letter4) {
-    // Get the value for each question
-    const answer1 = getSelected(letter1);
-    const answer2 = getSelected(letter2);
-    const answer3 = getSelected(letter3);
-    const answer4 = getSelected(letter4);
-    question = [answer1, answer2, answer3, answer4];
-    
-    if (question.includes(undefined)) {
-        return false; // If any question has nothing selected, return False
-    }
-    
-    for (i = 0; i < question.length; i++) {
-        for (j = i + 1; j < question.length; j++) {
-            if (question[i] == question[j]) {
-                return false; // If any question has the same answer as another, return False
-            }
-        }
-    }
-    
-    return true; // If all answers are unique and answered, return True
 }
