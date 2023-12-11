@@ -162,10 +162,6 @@
         const savedSelectionB = localStorage.getItem('radioSelectionB');
         const savedSelectionC = localStorage.getItem('radioSelectionC');
         const savedSelectionD = localStorage.getItem('radioSelectionD');
-        console.log("savedSelectionA: ", savedSelectionA)
-        console.log("savedSelectionB: ", savedSelectionB)
-        console.log("savedSelectionC: ", savedSelectionC)
-        console.log("savedSelectionD: ", savedSelectionD)
 
         blocks = document.querySelectorAll(".question_block")
         
@@ -206,6 +202,7 @@
         // Save the current selection to local storage
         localStorage.setItem('radioSelectionD', counterValue);
     }
+    
 </script>
 
 
