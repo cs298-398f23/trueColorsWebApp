@@ -56,7 +56,7 @@ An online/web version of the _True Colors_ personality assessment typically comp
 
 - Settings: Create a master password
 
-- Instance Configuratoin: Make it a db.t2.micro
+- Instance Configuration: Make it a db.t2.micro
 
 - Storage: -- Storage autoscaling, turn off
 
