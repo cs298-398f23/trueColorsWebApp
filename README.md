@@ -32,6 +32,16 @@ An online/web version of the _True Colors_ personality assessment typically comp
 
 - ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>
 
+- sudo amazon-linux-extras install mariadb10.5
+
+- sudo systemctl start mariadb
+
+- sudo mysql_secure_installation
+n y y y y y 
+
+**OLD EC2**
+- mysql -u root -p
+
 - sudo yum install -y git
 
 - git clone <repo>
@@ -43,6 +53,11 @@ An online/web version of the _True Colors_ personality assessment typically comp
 - pip install -r requirements.txt
 
 - sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --chdir /home/ec2-user/trueColorsWebApp "server:create_app()"
+
+**Connecting Database To EC2 Instance**
+
+- sudo yum -y install mariadb-server
+- sudo service mariadb start
 
 **Creating an RDS instance for mySQL on AWS**
 
