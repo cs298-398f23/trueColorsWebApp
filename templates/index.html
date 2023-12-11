@@ -20,7 +20,7 @@
     <p>After each group has been ranked, press the "next" button to continue this process with the next set of words until the test is complete.</p>
     <em><strong>Make sure your decisions are final before proceeding to the next section.</em></strong>
     <!-- "Begin Test" button-->
-    <button type="button", class="special_button" id="start_button">Begin Test</button>
+    <button type="button", class="special_button" id="start_button">Resume Test</button>
 
 </div>
 
@@ -35,16 +35,16 @@
         
         <h2 id="letter_1">Letter</h2>
 
-            <input type="radio" name="answer" class="answer" id="4">
+            <input type="radio" name="answer" class="answer" id="4" onchange="updateSessionA('4')">
             <label for="4" id="four_button">4</label>
             
-            <input type="radio" name="answer" class="answer" id="3">
+            <input type="radio" name="answer" class="answer" id="3" onchange="updateSessionA('3')">
             <label for="3" id="three_button">3</label>
             
-            <input type="radio" name="answer" class="answer" id="2">
+            <input type="radio" name="answer" class="answer" id="2" onchange="updateSessionA('2')">
             <label for="2" id="two_button">2</label>
             
-            <input type="radio" name="answer" class="answer" id="1">
+            <input type="radio" name="answer" class="answer" id="1" onchange="updateSessionA('1')">
             <label for="1" id="one_button">1</label>
 
         <ul>
@@ -59,16 +59,16 @@
 
         <h2 id="letter_2">Letter</h2>
 
-            <input type="radio" name="answerB" class="answer" id="4">
+            <input type="radio" name="answerB" class="answer" id="4" onchange="updateSessionB('4')">
             <label for="4" id="four_button">4</label>
             
-            <input type="radio" name="answerB" class="answer" id="3">
+            <input type="radio" name="answerB" class="answer" id="3" onchange="updateSessionB('3')">
             <label for="3" id="three_button">3</label>
             
-            <input type="radio" name="answerB" class="answer" id="2">
+            <input type="radio" name="answerB" class="answer" id="2" onchange="updateSessionB('2')">
             <label for="2" id="two_button">2</label>
             
-            <input type="radio" name="answerB" class="answer" id="1">
+            <input type="radio" name="answerB" class="answer" id="1" onchange="updateSessionB('1')">
             <label for="1" id="one_button">1</label>
 
         <ul>
@@ -83,16 +83,16 @@
 
         <h2 id="letter_3">Letter</h2>
 
-            <input type="radio" name="answerC" class="answer" id="4">
+            <input type="radio" name="answerC" class="answer" id="4" onchange="updateSessionC('4')">
             <label for="4" id="four_button">4</label>
             
-            <input type="radio" name="answerC" class="answer" id="3">
+            <input type="radio" name="answerC" class="answer" id="3" onchange="updateSessionC('3')">
             <label for="3" id="three_button">3</label>
             
-            <input type="radio" name="answerC" class="answer" id="2">
+            <input type="radio" name="answerC" class="answer" id="2" onchange="updateSessionC('2')">
             <label for="2" id="two_button">2</label>
             
-            <input type="radio" name="answerC" class="answer" id="1">
+            <input type="radio" name="answerC" class="answer" id="1" onchange="updateSessionC('1')">
             <label for="1" id="one_button">1</label>
 
         <ul>
@@ -107,16 +107,16 @@
 
         <h2 id="letter_4">Letter</h2>
 
-            <input type="radio" name="answerD" class="answer" id="4">
+            <input type="radio" name="answerD" class="answer" id="4" onchange="updateSessionD('4')">
             <label for="4" id="four_button">4</label>
             
-            <input type="radio" name="answerD" class="answer" id="3">
+            <input type="radio" name="answerD" class="answer" id="3" onchange="updateSessionD('3')">
             <label for="3" id="three_button">3</label>
             
-            <input type="radio" name="answerD" class="answer" id="2">
+            <input type="radio" name="answerD" class="answer" id="2" onchange="updateSessionD('2')">
             <label for="2" id="two_button">2</label>
             
-            <input type="radio" name="answerD" class="answer" id="1">
+            <input type="radio" name="answerD" class="answer" id="1" onchange="updateSessionD('1')">
             <label for="1" id="one_button">1</label>
 
         <ul>
@@ -154,5 +154,59 @@
 </body>
 
 <script src="/static/app.js"></script>
+<script>
+
+    function radioButtonLocalStorage() {
+        // Retrieve saved selections from local storage
+        const savedSelectionA = localStorage.getItem('radioSelectionA');
+        const savedSelectionB = localStorage.getItem('radioSelectionB');
+        const savedSelectionC = localStorage.getItem('radioSelectionC');
+        const savedSelectionD = localStorage.getItem('radioSelectionD');
+        console.log("savedSelectionA: ", savedSelectionA)
+        console.log("savedSelectionB: ", savedSelectionB)
+        console.log("savedSelectionC: ", savedSelectionC)
+        console.log("savedSelectionD: ", savedSelectionD)
+
+        blocks = document.querySelectorAll(".question_block")
+        
+        // If there are saved selections, update the radio buttons
+        if (savedSelectionA !== null) {
+            blocks[0].querySelector(`[id="${savedSelectionA}"]`).checked = true;
+        }
+
+        if (savedSelectionB !== null) {
+            blocks[1].querySelector(`[id="${savedSelectionB}"]`).checked = true;
+        }
+
+        if (savedSelectionC !== null) {
+            blocks[2].querySelector(`[id="${savedSelectionC}"]`).checked = true;
+        }
+
+        if (savedSelectionD !== null) {
+            blocks[3].querySelector(`[id="${savedSelectionD}"]`).checked = true;
+        }
+    }
+
+    function updateSessionA(counterValue) {
+        // Save the current selection to local storage
+        localStorage.setItem('radioSelectionA', counterValue);
+    }
+
+    function updateSessionB(counterValue) {
+        // Save the current selection to local storage
+        localStorage.setItem('radioSelectionB', counterValue);
+    }
+
+    function updateSessionC(counterValue) {
+        // Save the current selection to local storage
+        localStorage.setItem('radioSelectionC', counterValue);
+    }
+
+    function updateSessionD(counterValue) {
+        // Save the current selection to local storage
+        localStorage.setItem('radioSelectionD', counterValue);
+    }
+</script>
+
 
 </html>
