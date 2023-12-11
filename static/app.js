@@ -1,5 +1,4 @@
-// Get msin test panels and hide them
-
+// Get main test panels and hide them
 const start_panel = document.getElementById('start_panel');
 const test_container = document.getElementById('test_container');
 const results_panel = document.getElementById('results_panel');
@@ -42,9 +41,7 @@ if (localStorage.getItem('currentGroup') === null) {
     saveState(1);
 }
 
-console.log(loadState())
 let group = parseInt(loadState());
-console.log('Current group:', group);
 
 // Function that ensures each new question doesn't already have an option selected
 function deselectAnswers() {
@@ -63,8 +60,6 @@ async function fetchQuestionsFromDatabase() {
 
 // Function that loads the current question information
 async function loadQuestions() {
-
-    //deselectAnswers();
     
     const questions = await fetchQuestionsFromDatabase();
 
@@ -123,6 +118,7 @@ function getScores() {
     const scores = [score_orange, score_blue, score_gold, score_green];
     console.log(scores)
     return scores;
+    
 }
 
 // Function to get the highest score and return its associated color
@@ -163,9 +159,10 @@ function getAnswers() {
                 answerFound = true;
             }
         });
-        //Handles the case where no answer's found
+        
+        // Handles the case where no answers found
         if (!answerFound) {
-            //Default value
+            // Default value
             answers.push(undefined);
         }
         
@@ -219,6 +216,7 @@ function checkAnswersRecorded(answers) {
     }
 
     return true;
+    
 }
 
 // Submit button to validate answers and update questions
@@ -255,13 +253,15 @@ submit_button.addEventListener('click', async () => {
 
         // Resets the radio buttons local storage to null
         removeRadioSelectionsFromLS();
-        
-        saveState(group); // Save the current group to local storage
+
+        // Save the current group to local storage
+        saveState(group);
 
         loadQuestions();
 
         }
     }
+        
     // Else, alert user to select all answers and make sure they are unique
     else {
         alert("Please do not have duplicate answers and make sure to answer all questions before continuing.")
@@ -279,9 +279,10 @@ back_button.addEventListener('click', () => {
 
 // Retake button to hide results panel, display the start panel, and reset the test
 retake_button.addEventListener('click', () => {
-    console.log('Retake button clicked');
+
     localStorage.clear();
     saveState(1);
+    
     // Resetting display property
     results_panel.style = 'display: none';
     start_panel.style = 'display:';
@@ -359,8 +360,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Function to display the results panel and store the user's result in the database
 function displayResults() {
-    console.log('Group:', group);
+
     test_container.style = 'display: none';
     results_panel.style = 'display:';
 
@@ -382,8 +384,10 @@ function displayResults() {
     
     localStorage.removeItem('currentGroup');
     removeRadioSelectionsFromLS();
+    
 }
 
+// Function to remove radio button selections from local storage
 function removeRadioSelectionsFromLS() {
     localStorage.removeItem('radioSelectionA');
     localStorage.removeItem('radioSelectionB');
