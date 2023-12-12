@@ -8,7 +8,6 @@
 body {
   background-color: #b8c6db;
   background: linear-gradient(45deg, #ff4e50, #fc913a, #f9d423, #a8eb12, #50e3c2, #4a90e2, #9013fe);
-  animation: colorShift 15s infinite linear;
   font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
@@ -143,23 +142,5 @@ ul li {
 @keyframes fade-in {
   100% {
       opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-      opacity: 0;
-  }
-}
-
-@keyframes colorShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
   }
 }
