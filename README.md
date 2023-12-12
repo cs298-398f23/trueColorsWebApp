@@ -7,7 +7,7 @@ An online/web version of the _True Colors_ personality assessment typically comp
 - Madison Meyers
 - Michael Romero
 
-**Creating A Virtual Environment**
+# Creating A Virtual Environment
 
 - python3 -m venv .venv
 
@@ -16,17 +16,17 @@ An online/web version of the _True Colors_ personality assessment typically comp
 - pip install -r requirements.txt
 
 
-**Creating Secret Value**
+# Creating A Secret Value For .env File
 
-- create a .env file with the only thing in being FLASK_SECRET_KEY =""
+- create a .env file with the only thing in being `FLASK_SECRET_KEY =""`
 
-- python3
+- `python3`
 
-- import secrets
+- `import secrets`
 
-- print(secrets.token_hex())
+- `print(secrets.token_hex())`
 
-- Whatever was printed out, paste that in between the "" in the .env file
+- Copy + paste the value that was printed in-between the `""` in the `.env` file
 
 # Creating An EC2 Instance
 
