@@ -1,91 +1,113 @@
 # True Colors Web Application
-An online/web version of the _True Colors_ personality assessment typically completed on pencil-and-paper. Final project designed for _CSCI 298/398_.
+An online/web version of the _[True Colors](https://www.truecolorsintl.com/about)_ personality assessment typically completed using pencil and paper in _CSCI 243.2: Preparing For A Computing Career_.
 
-**Project Members**
-- Jack Drabic
-- Rafael Garcia Jr.
-- Madison Meyers
-- Michael Romero
+Final project designed for _CSCI 298/398: Web Programming_.
 
-# Creating A Virtual Environment
+### Contributers
+- [Jack Drabic](https://github.com/JackJack7890)
+- [Rafael Garcia Jr.](https://github.com/RGJ-713)
+- [Madison Meyers](https://github.com/20madi)
+- [Michael Romero](https://github.com/MichaelRomero1)
 
-- python3 -m venv .venv
+### Requirements
+- [MySQL](https://dev.mysql.com/doc/refman/8.2/en/macos-installation-pkg.html) (You must have a MySQL account in order to create the database required for this project)
 
-- source .venv/bin/activate
+# Installation
 
-- pip install -r requirements.txt
+### 1. Clone the repository
 
+Once you are all set up, press the green `<> Code` button to gain a link to clone the repository.
 
-# Creating A Secret Value For .env File
+Then, open your preferred [IDE](https://aws.amazon.com/what-is/ide/) and clone the repository.
 
-- create a .env file with the only thing in being `FLASK_SECRET_KEY =""`
+### 2. Install 'requirements.txt' file
 
-- `python3`
+Once the repo has been cloned through your preferred IDE, run the following commands in your IDE's terminal:
 
-- `import secrets`
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-- `print(secrets.token_hex())`
+### 3. Create a .env file
 
-- Copy + paste the value that was printed in-between the `""` in the `.env` file
+Within the IDE, create a file in the project simply called `.env` with the only thing in it being `FLASK_SECRET_KEY =""`.
 
-# Creating An EC2 Instance
+Next, go into the terminal and run the following commands:
 
-Name: TrueColorsWebApp
+```
+python3
+import secrets
+print(secrets.token_hex())
+```
 
-AMI: Amazon Linux 2 AMI (HVM)
+A string of text should have been generated after the `print` command was used. Copy and paste the generated value in-between the `""` quotes in the `.env` file.
 
-Instance Type: t2.micro
+### 4. Creating the 'test_db' database
 
-Key Pair (Login): vockey
+Open up the [Terminal](https://support.apple.com/guide/terminal/welcome/mac) and log in to your MySQL account.
 
-Network Settings: Allow SSH traffic from anywhere, allow HTTP traffic from the internet
+Once you've logged in, run the following command:
 
-- `ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>` (without `<>` characters)
+```
+CREATE DATABASE test_db;
+```
 
-- `sudo yum install -y git`
+Next, open the [Finder](https://support.apple.com/guide/mac-help/organize-your-files-in-the-finder-mchlp2605/mac) and locate the folder called `trueColorsWebApp`.
 
-- `git clone <repo>` (without `<>` characters)
+Open the folder, right-click the subfolder called `database`, and select the `New Terminal at Folder` option.
 
-- `cd trueColorsWebApp`
+In the newly opened Terminal, run the following command (be sure to replace `YOUR_NAME` with the name of your MySQL user account):
 
-- `python3 -m venv .venv`
+```
+mysql -u YOUR_NAME -p test_db < create.sql
+```
 
-- `source .venv/bin/activate`
+You will then be prompted to enter your password.
 
-- `pip install -r requirements.txt`
+After doing this, run the following command, once again replacing `YOUR_NAME` with the name of your MySQL user account:
 
-- `sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --chdir /home/ec2-user/trueColorsWebApp "server:create_app()"`
+```
+mysql -u YOUR_NAME -p test_db < insert.sql
+```
 
+You will once again be prompted to enter your password.
 
-- `sudo amazon-linux-extras install mariadb10.5`
+At this point, the database should have successfully been populated.
 
-- `sudo systemctl start mariadb`
+In order to ensure this, it is suggested to go back into the Terminal that the database was created in and run the following commands:
 
-- `sudo mysql_secure_installation`
+```
+USE test_db;
+SHOW TABLES;
+SELECT * FROM q_group_1;
+```
 
-- `sudo yum install -y git`
+If 6 tables are listed and `q_group_1` contains 1 row of information, the database was successfully populated.
 
-**Connecting Database To EC2 Instance**
+### 5. Connecting to the MySQL database
 
-- sudo yum -y install mariadb-server
-- sudo service mariadb start
+Go back into the IDE with the opened project. Go to the `server.py` file.
 
-**Creating an RDS instance for mySQL on AWS**
+Go to `Line 103` in the file and locate the following code:
 
-- search in the bar rd, and go to RDS and Create a database
+```
+cnx = mysql.connector.connect(user='project', password='project',
+```
 
-- Database Creation Method: Standard create
+Replace the first `project` with the name of your MySQL user account, and replace the second `project` with the password to that account.
 
-- Engine Options: MySQL
+This will allow the project to connect to your MySQL database in order to load each question of the personality test, as well as store user results in the `user_colors` table of the database.
 
-- Templates: Free Tier
+### 6. Running the project
 
-- Settings: Create a master password
+You are now ready to launch the project locally.
 
-- Instance Configuration: Make it a db.t2.micro
+In your IDE, run the `server.py` file.
 
-- Storage: -- Storage autoscaling, turn off
+Once the server is running, open a new tab. In your browser's search bar, type in `localhost:8000` and hit `enter`.
 
-- Connectivity: Connect to an EC2 Compute Resource -- Ec2 Instance: TrueColorsWebApp
+The True Colors Personality Test should successfully be running. As you progress through the test, each set of questions should be loading in, as well.
 
-- Advanced options: test_db for the name
+**It is important to note that the project will be running on a development server. This should NOT be the case in a production deployment.**
