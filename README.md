@@ -111,3 +111,62 @@ Once the server is running, open a new tab. In your browser's search bar, type i
 The True Colors Personality Test should successfully be running. As you progress through the test, each set of questions should be loading in, as well.
 
 **It is important to note that the project will be running on a development server. This should NOT be the case in a production deployment.**
+
+### 7. Creating the Ec2 Instance
+
+- On AWS ec2, click create Instance
+
+ -- Select Name As: TrueColorsWebApp
+
+-- Select Image As: AMI: Amazon Linux 2 AMI (HVM)
+
+-- Select Instance Type as: t2.micro
+
+-- Key Pair (Login): vockey
+
+-- Network Settings: Allow SSH traffic from anywhere, allow HTTP traffic from the internet
+
+-- Click create instance
+
+# Now in a new terminal window, run the following commands
+
+- `ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>` (without `<>` characters)
+
+- `sudo yum install -y git`
+
+- `git clone <repo>` (without `<>` characters)
+
+- `cd trueColorsWebApp`
+
+- `python3 -m venv .venv`
+
+- `source .venv/bin/activate`
+
+- `pip install -r requirements.txt`
+
+- #Now open a new terminal window (don't delete the old one) and run the following commands:
+
+- `sudo amazon-linux-extras install mariadb10.5`
+
+- `sudo systemctl start mariadb`
+
+- `sudo mysql_secure_installation`
+   - After running this command, it will prompt you to click return if you don't have a previous password. Just enter return
+   - After that, you will be asked a series of Y/N questions. For the first one, enter N. After that, enter Y for the rest.
+   - On the first Y, you will be prompted to create a password and confirm the password. Please do that.
+    
+- mariadb -u root -p
+    - You will be prompted to enter your password. This is the same password you created in the previous step. Please enter the password and enter return
+ 
+- Create db
+ 
+- Insert db
+ 
+# Once you finish these commands, go back to the previous terminal window where you cloned the github repo, and enter the following:
+
+- `sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --chdir /home/ec2-user/trueColorsWebApp "server:create_app()"`
+
+
+
+
+
