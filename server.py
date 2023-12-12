@@ -100,8 +100,8 @@ def connectToMySQL():
     '''
     Connects to MySQL and returns a cursor and connection object.
     '''
-    cnx = mysql.connector.connect(user='root', password='password',
-                                  host='54.160.186.83',
+    cnx = mysql.connector.connect(user='project', password='project',
+                                  host='localhost',
                                   database='test_db')
     cursor = cnx.cursor()
     return cursor, cnx
@@ -109,7 +109,7 @@ def connectToMySQL():
 if __name__ == '__main__':
     dotenv.load_dotenv()
     if not os.getenv('FLASK_SECRET_KEY'):
-        print('Please set FLASK_SECRET_KEY in .env file')
+        print('Please set FLASK_SECRET_KEY in .env file.')
         exit(1)
 
     app = create_app()
