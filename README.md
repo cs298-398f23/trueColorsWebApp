@@ -28,7 +28,17 @@ An online/web version of the _True Colors_ personality assessment typically comp
 
 - Whatever was printed out, paste that in between the "" in the .env file
 
-**EC2 Instance Steps**
+# Creating An EC2 Instance
+
+Name: TrueColorsWebApp
+
+AMI: Amazon Linux 2 AMI (HVM)
+
+Instance Type: t2.micro
+
+Key Pair (Login): vockey
+
+Network Settings: Allow SSH traffic from anywhere, allow HTTP traffic from the internet
 
 - ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>
 
@@ -37,9 +47,7 @@ An online/web version of the _True Colors_ personality assessment typically comp
 - sudo systemctl start mariadb
 
 - sudo mysql_secure_installation
-n y y y y y 
 
-**OLD EC2**
 - mysql -u root -p
 
 - sudo yum install -y git
