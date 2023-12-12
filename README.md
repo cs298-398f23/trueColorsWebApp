@@ -112,59 +112,65 @@ The True Colors Personality Test should successfully be running. As you progress
 
 **It is important to note that the project will be running on a development server. This should NOT be the case in a production deployment.**
 
-### 7. Creating the Ec2 Instance
+# Creating an EC2 instance
 
-- On AWS ec2, click create Instance
+In AWS EC2, click `Create Instance`.
 
- -- Select Name As: TrueColorsWebApp
+-- Select Name as: TrueColorsWebApp
 
--- Select Image As: AMI: Amazon Linux 2 AMI (HVM)
+-- Select Image as: AMI: Amazon Linux 2 AMI (HVM)
 
--- Select Instance Type as: t2.micro
+-- Select Instance Type as: `t2.micro`
 
--- Key Pair (Login): vockey
+-- Select Key Pair (Login) as: `vockey`
 
--- Network Settings: Allow SSH traffic from anywhere, allow HTTP traffic from the internet
+-- Network Settings: Allow SSH traffic from anywhere, Allow HTTP traffic from the internet
 
--- Click create instance
+-- Click `Create Instance`
 
-# Now in a new terminal window, run the following commands
+In a new Terminal window, run the following commands (replacing anything with `<>` characters and excluding those characters):
 
-- `ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>` (without `<>` characters)
+```
+ssh -i ~/.ssh/labsuser.pem ec2-user@<YOUR IPv4 ADDRESS OR DNS>
+sudo yum install -y git
+git clone <YOUR_REPO>
+cd trueColorsWebApp
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-- `sudo yum install -y git`
+Now, open a new Terminal window (do not delete the old one) and run the following commands:
 
-- `git clone <repo>` (without `<>` characters)
+```
+sudo amazon-linux-extras install mariadb10.5
+sudo systemctl start mariadb
+sudo mysql_secure_installation
+```
 
-- `cd trueColorsWebApp`
+After running this command, it will prompt you to hit `return` if you do not already have a previous password. Simply hit `return`.
 
-- `python3 -m venv .venv`
+After that, you will be asked a series of Y/N questions. For the first one, enter `N`.
 
-- `source .venv/bin/activate`
+For the rest, enter `Y`. You will be prompted after the first `Y` to create a password and confirm the password.
 
-- `pip install -r requirements.txt`
-
-- #Now open a new terminal window (don't delete the old one) and run the following commands:
-
-- `sudo amazon-linux-extras install mariadb10.5`
-
-- `sudo systemctl start mariadb`
-
-- `sudo mysql_secure_installation`
-   - After running this command, it will prompt you to click return if you don't have a previous password. Just enter return
-   - After that, you will be asked a series of Y/N questions. For the first one, enter N. After that, enter Y for the rest.
-   - On the first Y, you will be prompted to create a password and confirm the password. Please do that.
+Once a password has been created, run the following command (replacing `YOUR_NAME` with the name of your MySQL user account):
     
-- mariadb -u root -p
-    - You will be prompted to enter your password. This is the same password you created in the previous step. Please enter the password and enter return
- 
-- Create db
- 
-- Insert db
- 
-# Once you finish these commands, go back to the previous terminal window where you cloned the github repo, and enter the following:
+```
+mariadb -u YOUR_NAME -p
+```
 
-- `sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --chdir /home/ec2-user/trueColorsWebApp "server:create_app()"`
+You will be prompted to enter your password. This is the same password you created in the previous step. Enter the password and hit `return`.
+ 
+Run the `create.sql` and `insert.sql` commands from the previous step, as well.
+ 
+Once you finish running these commands, go back to the previous Terminal window where you cloned the GitHub repo and enter the following:
+
+```
+sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --chdir /home/ec2-user/trueColorsWebApp "server:create_app()"
+```
+
+If successful, you should be able to enter the IP address of the EC2 instance in your browser's search bar and access the functioning True Colors personality test.
 
 
 
