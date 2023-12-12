@@ -1,5 +1,5 @@
 flask
-mysql-connector-python
 gunicorn
-python-dotenv
+mysql-connector-python
 pytest
+python-dotenv
