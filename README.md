@@ -40,27 +40,30 @@ Key Pair (Login): vockey
 
 Network Settings: Allow SSH traffic from anywhere, allow HTTP traffic from the internet
 
-- ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>
+- `ssh -i ~/.ssh/labsuser.pem ec2-user@<IPv4 addrress or DNS>` (without `<>` characters)
 
-- sudo amazon-linux-extras install mariadb10.5
+- `sudo yum install -y git`
 
-- sudo systemctl start mariadb
+- `git clone <repo>` (without `<>` characters)
 
-- sudo mysql_secure_installation
+- `cd trueColorsWebApp`
 
-- mysql -u root -p
+- `python3 -m venv .venv`
 
-- sudo yum install -y git
+- `source .venv/bin/activate`
 
-- git clone <repo>
+- `pip install -r requirements.txt`
 
-- cd trueColorsWebApp
+- `sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --chdir /home/ec2-user/trueColorsWebApp "server:create_app()"`
 
-- python3 -m venv .venv
-- source .venv/bin/activate
-- pip install -r requirements.txt
 
-- sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --chdir /home/ec2-user/trueColorsWebApp "server:create_app()"
+- `sudo amazon-linux-extras install mariadb10.5`
+
+- `sudo systemctl start mariadb`
+
+- `sudo mysql_secure_installation`
+
+- `sudo yum install -y git`
 
 **Connecting Database To EC2 Instance**
 
