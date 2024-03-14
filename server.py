@@ -100,7 +100,7 @@ def connectToMySQL():
     '''
     Connects to MySQL and returns a cursor and connection object.
     '''
-    cnx = mysql.connector.connect(user='root', password='password',
+    cnx = mysql.connector.connect(user='project', password='project',
                                   host='localhost',
                                   database='test_db')
     cursor = cnx.cursor()
