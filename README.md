@@ -9,8 +9,9 @@ Final project designed for _CSCI 298/398: Web Programming_.
 - [Madison Meyers](https://github.com/20madi)
 - [Michael Romero](https://github.com/MichaelRomero1)
 
-### Requirements
-- [MySQL](https://dev.mysql.com/doc/refman/8.2/en/macos-installation-pkg.html) (You must have a MySQL account in order to create the database required for this project)
+### Prerequisites:
+
+- MySQL | ([Download](https://dev.mysql.com/downloads/mysql/), [Set-Up Tutorial](https://dev.mysql.com/doc/mysql-getting-started/en/))
 
 # Installation
 
