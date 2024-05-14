@@ -4,11 +4,13 @@ const test_container = document.getElementById('test_container');
 const results_panel = document.getElementById('results_panel');
 const info_panel = document.getElementById('info_panel');
 const pie_chart = document.getElementById('pie_chart_container');
+const full_results_panel = document.getElementById('full_results_panel');
 
 test_container.style.display = 'none';
 results_panel.style.display = 'none';
 info_panel.style.display = 'none';
 pie_chart.style.display = 'none';
+full_results_panel.style.display = 'none';
 
 // Get all templates for each letter and their associated words
 const letter_1 = document.getElementById('letter_1');
@@ -330,28 +332,56 @@ pie_button.addEventListener('click', () => {
 
 back_button_pie.addEventListener('click', () => {
     
-        pie_chart.style.display = 'none';
-        results_panel.style.display = 'block';
+    pie_chart.style.display = 'none';
+    results_panel.style.display = 'block';
     
-    })
+})
 
+full_results_button.addEventListener('click', () => {
+    
+    results_panel.style.display = 'none';
+    full_results_panel.style.display = 'block';
+
+    full_results_text = document.getElementById("full_results_text")
+    scores = getScores();
+    // list how the different scores for me
+    full_results_text.innerHTML = `Your scores for each color are as follows:<br><br>
+    Orange: ${scores[0]}<br>
+    Blue: ${scores[1]}<br>
+    Gold: ${scores[2]}<br>
+    Green: ${scores[3]}<br>
+    This means that you are:<br>
+    ${((scores[0] / 50) * 100).toFixed(2)}% Orange<br>
+    ${((scores[1] / 50) * 100).toFixed(2)}% Blue<br>
+    ${((scores[2] / 50) * 100).toFixed(2)}% Gold<br>
+    ${((scores[3] / 50) * 100).toFixed(2)}% Green<br>
+    `
+    // toFixed rounds it to two decimal places. There are 50 points in total
+})
+
+back_button_full.addEventListener('click', () => {
+        
+    full_results_panel.style.display = 'none';
+    results_panel.style.display = 'block';
+        
+})
 
 // Function that tells the user about their color
 function getColorDescription(color) {
     if (color === 'ORANGE') {
-        return '<strong>Your True Color is ORANGE!</strong><br><br>Others often describe you as fun, energetic, and charismatic. People are naturally drawn to you, and you waste no time getting to know new people. You are naturally extraverted and do very well in social situations.<br><br>You are also incredibly charming and quick-witted. You are a great negotiator who has a knack for convincing others to see things your way.<br><br>Orange individuals are also very creative and spontaneous. You are definitely not afraid to take risks. Similarly, you are often guided by your heart, rather than your head, which sometimes gets you into trouble. You sometimes have trouble following through on long-term goals, and prefer short-term, tangible rewards.<br><br>Because of their need for excitement and socialization, orange individuals are well-suited for careers that are flexible and allow them to work with others. These include careers in education, sales and marketing, management, and customer service.';
+        return '<strong>Your Dominant Color is ORANGE!</strong><br><br>Others often describe you as fun, energetic, and charismatic. People are naturally drawn to you, and you waste no time getting to know new people. You are naturally extraverted and do very well in social situations.<br><br>You are also incredibly charming and quick-witted. You are a great negotiator who has a knack for convincing others to see things your way.<br><br>Orange individuals are also very creative and spontaneous. You are definitely not afraid to take risks. Similarly, you are often guided by your heart, rather than your head, which sometimes gets you into trouble. You sometimes have trouble following through on long-term goals, and prefer short-term, tangible rewards.<br><br>Because of their need for excitement and socialization, orange individuals are well-suited for careers that are flexible and allow them to work with others. These include careers in education, sales and marketing, management, and customer service.';
     }
 
     else if (color === 'GOLD') {
-        return '<strong>Your True Color is GOLD!</strong><br><br>You are very detail-oriented and love to plan ahead. You are very predictable and responsible, which gives you a sense of security in life. You rarely do anything that is unpredictable or unplanned.<br><br>You also value history and tradition. You hold your family\'s shared beliefs very closely, and have a high moral standard. You find joy in expressing these values in different aspects of your life, whether that be through helping others by volunteering or through your career. You enjoy having others rely on you to help.<br><br>You enjoy being the best at what you do, and believe there is a right way to do everything. Others would describe you as a "rule-follower" who "does things by the book." Because of this, you can also become pushy and judgmental when you don\'t agree with others\' decisions.<br><br>Because of their need for structure, security, and predictability, those whose True Color is gold do well in jobs that are very straightforward and have highly defined duties.  You enjoy knowing what your tasks will be for the day, and would not perform well in careers that are highly unpredictable. Gold individuals are well-suited for careers in finance or public service.';
+        return '<strong>Your Dominant Color is GOLD!</strong><br><br>You are very detail-oriented and love to plan ahead. You are very predictable and responsible, which gives you a sense of security in life. You rarely do anything that is unpredictable or unplanned.<br><br>You also value history and tradition. You hold your family\'s shared beliefs very closely, and have a high moral standard. You find joy in expressing these values in different aspects of your life, whether that be through helping others by volunteering or through your career. You enjoy having others rely on you to help.<br><br>You enjoy being the best at what you do, and believe there is a right way to do everything. Others would describe you as a "rule-follower" who "does things by the book." Because of this, you can also become pushy and judgmental when you don\'t agree with others\' decisions.<br><br>Because of their need for structure, security, and predictability, those whose True Color is gold do well in jobs that are very straightforward and have highly defined duties.  You enjoy knowing what your tasks will be for the day, and would not perform well in careers that are highly unpredictable. Gold individuals are well-suited for careers in finance or public service.';
     }
 
     else if (color === 'BLUE') {
-        return '<strong>Your True Color is BLUE!</strong><br><br>You are typically calm, optimistic, and kind. You are a genuinely caring and compassionate individual who tries to see the best in others and in every situation. In stressful situations, you are able to remain calm and mediate situations between individuals.<br><br>Your personality gives you a deep desire to feel appreciated and loved by others. In your family life, you are always giving words of affirmation, and expect the same in return. Your romantic relationships are based on a mutual trust and understanding, and you never waste an opportunity to let your significant other know that you love them - whether that be through a kind word or a kiss. You need a partner who does the same, and you feel undervalued in relationships without daily affirmation of your love and commitment.<br><br>Your positive attitude motivates others. You are not a leader who is the loudest or most charismatic, but rather, you are a quiet leader who inspires others through your own hard work and kindness toward others. You truly lead by example.<br><br>Those whose True Color is blue do well in caring occupations that allow them to make a difference in the lives of others. They often are most successful as faith leaders, counselors, medical professionals, or educators.';
+        return '<strong>Your Dominant Color is BLUE!</strong><br><br>You are typically calm, optimistic, and kind. You are a genuinely caring and compassionate individual who tries to see the best in others and in every situation. In stressful situations, you are able to remain calm and mediate situations between individuals.<br><br>Your personality gives you a deep desire to feel appreciated and loved by others. In your family life, you are always giving words of affirmation, and expect the same in return. Your romantic relationships are based on a mutual trust and understanding, and you never waste an opportunity to let your significant other know that you love them - whether that be through a kind word or a kiss. You need a partner who does the same, and you feel undervalued in relationships without daily affirmation of your love and commitment.<br><br>Your positive attitude motivates others. You are not a leader who is the loudest or most charismatic, but rather, you are a quiet leader who inspires others through your own hard work and kindness toward others. You truly lead by example.<br><br>Those whose True Color is blue do well in caring occupations that allow them to make a difference in the lives of others. They often are most successful as faith leaders, counselors, medical professionals, or educators.';
     } 
 
     else if (color === 'GREEN') {
-        return '<strong>Your True Color is GREEN!</strong><br><br>Others often describe you as extremely intelligent. You have an innate desire to do things to the best of your ability and take pride in your work. At work, you set the standard for everyone else. To you, work is truly enjoyable. Even on the weekends, you can\'t stand the thought of wasting a day by doing nothing, and always try to fit as much into each day as possible.<br><br>You are also a big thinker. You enjoy talking with others about abstract, philosophical ideas. You enjoy thinking about the future and all of its possibilities. You believe that you should never stop learning, and enjoy learning new information simply for your own enjoyment. In the workplace, you are a creative "idea person" who comes up with creative and practical solutions to problems.<br><br>You are very independent. Although you enjoy spending time with others, you need your private time each day to recharge. This gives you time to process everything.<br><br>Individuals with green personalities do well in careers that allow them to apply all of the "big ideas" they have. They typically succeed in careers within higher education, science, technology development, and medicine.';
+        return '<strong>Your Dominant Color is GREEN!</strong><br><br>Others often describe you as extremely intelligent. You have an innate desire to do things to the best of your ability and take pride in your work. At work, you set the standard for everyone else. To you, work is truly enjoyable. Even on the weekends, you can\'t stand the thought of wasting a day by doing nothing, and always try to fit as much into each day as possible.<br><br>You are also a big thinker. You enjoy talking with others about abstract, philosophical ideas. You enjoy thinking about the future and all of its possibilities. You believe that you should never stop learning, and enjoy learning new information simply for your own enjoyment. In the workplace, you are a creative "idea person" who comes up with creative and practical solutions to problems.<br><br>You are very independent. Although you enjoy spending time with others, you need your private time each day to recharge. This gives you time to process everything.<br><br>Individuals with green personalities do well in careers that allow them to apply all of the "big ideas" they have. They typically succeed in careers within higher education, science, technology development, and medicine.';
     }
 }
 
@@ -430,16 +460,13 @@ function fetch_data() {
                 labels: labels,
                 datasets: [{
                     data: counts,
-                    backgroundColor: ['#FFD700', '#008000', '#FFA500', '#0000FF'], // Example colors
+                    backgroundColor: ['#FFD700', '#008000', '#FFA500', '#0000FF'], // Background Colors
                 }]
             },
             options: {
                 responsive: false,
-                maintainAspectRatio: false,
-                title: {
-                    display: true,
-                    text: 'Other User Dominant Colors'
-            }}
+                maintainAspectRatio: false, // This line and above are to make the chart not automatically resize
+            }
     
         });
     })

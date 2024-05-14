@@ -120,7 +120,17 @@ ul li {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 450px;
-  height: 600px;
+  height: 610px;
+  max-width: 100%;
+}
+
+.full_results {
+  padding: 4rem;
+  background-color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 800px;
   max-width: 100%;
 }
 

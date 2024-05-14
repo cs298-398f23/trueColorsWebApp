@@ -136,7 +136,7 @@
 <!-- Results panel, appears once test is completed -->
 <div class="results fade-in" id="results_panel">
 
-    <h2 id="results_title">Your True Color is...</h2>
+    <h2 id="results_title">Your Dominant Color is...</h2>
     <!-- Color result goes here -->
     <h2 id="user_result">MY_COLOR_HERE</h2>
     <!-- "Learn More" button-->
@@ -145,21 +145,29 @@
     <button type="button", class="special_button" id="retake_button">Retake Test</button>
     <!-- "Show Pie Chart" button-->
     <button type="button", class="special_button" id="pie_button">Show Pie Chart</button>
+    <!-- "Show Full Results button"-->
+    <button type="button", class="special_button" id="full_results_button">Show Full Results</button>
 
 </div>
 
-<div id="pie_chart_container">
+<div class= "pie_chart fade-in" id="pie_chart_container">
     <h5 id="pie_chart_title">User Dominant True Color Distribution</h5>
     <!-- Pie chart that displays the user's color TEST-->
     <canvas id="pieChart" width="500" height="500"></canvas>
-    <button class="button" id="back_button_pie">Back to Results!</button>
+    <button class="button" id="back_button_pie">Back to result page</button>
 </div>
 
 <!-- Info panel that describes what the user's color means -->
 <div class="info fade-in" id="info_panel">
     <!-- Color description goes here -->
     <p id="user_description">MY_DESCRIPTION_HERE</p>
-    <button class="special_button" id="back_button_info">Back</button>
+    <button class="special_button" id="back_button_info">Back to result page</button>
+</div>
+
+<div class="full_results fade-in" id="full_results_panel">
+    <h2 id="full_results_title">Full Results</h2>
+    <p id="full_results_text">MY_FULL_RESULTS_HERE</p>
+    <button class="special_button" id="back_button_full">Back to result page</button>
 </div>
 
 </body>
