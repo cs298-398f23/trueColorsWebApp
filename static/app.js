@@ -351,12 +351,12 @@ full_results_button.addEventListener('click', () => {
     Gold: ${scores[2]}<br>
     Green: ${scores[3]}<br>
     This means that you are:<br>
-    ${((scores[0] / 50) * 100).toFixed(2)}% Orange<br>
-    ${((scores[1] / 50) * 100).toFixed(2)}% Blue<br>
-    ${((scores[2] / 50) * 100).toFixed(2)}% Gold<br>
-    ${((scores[3] / 50) * 100).toFixed(2)}% Green<br>
+    ${((scores[0] / 50) * 100).toFixed(0)}% Orange<br>
+    ${((scores[1] / 50) * 100).toFixed(0)}% Blue<br>
+    ${((scores[2] / 50) * 100).toFixed(0)}% Gold<br>
+    ${((scores[3] / 50) * 100).toFixed(0)}% Green<br>
     `
-    // toFixed rounds it to two decimal places. There are 50 points in total
+    // toFixed(0) gets rid of decimals. There are 50 points in total
 })
 
 back_button_full.addEventListener('click', () => {
