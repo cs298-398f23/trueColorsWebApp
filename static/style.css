@@ -8,7 +8,6 @@
 body {
   background-color: #b8c6db;
   background: linear-gradient(45deg, #ff4e50, #fc913a, #f9d423, #a8eb12, #50e3c2, #4a90e2, #9013fe);
-  animation: colorShift 15s infinite linear;
   font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;

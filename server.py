@@ -125,7 +125,7 @@ def connectToMySQL():
 if __name__ == '__main__':
     dotenv.load_dotenv()
     if not os.getenv('FLASK_SECRET_KEY'):
-        print('Please set FLASK_SECRET_KEY in .env file')
+        print('Please set FLASK_SECRET_KEY in .env file.')
         exit(1)
 
     app = create_app()
