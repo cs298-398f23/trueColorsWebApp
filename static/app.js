@@ -345,12 +345,12 @@ full_results_button.addEventListener('click', () => {
     full_results_text = document.getElementById("full_results_text")
     scores = getScores();
     // list how the different scores for me
-    full_results_text.innerHTML = `Your scores for each color are as follows:<br><br>
+    full_results_text.innerHTML = `<strong>Your scores for each color are as follows:</strong><br><br>
     Orange: ${scores[0]}<br>
     Blue: ${scores[1]}<br>
     Gold: ${scores[2]}<br>
-    Green: ${scores[3]}<br>
-    This means that you are:<br>
+    Green: ${scores[3]}<br><br>
+    <strong>This means that you are:</strong><br><br>
     ${((scores[0] / 50) * 100).toFixed(0)}% Orange<br>
     ${((scores[1] / 50) * 100).toFixed(0)}% Blue<br>
     ${((scores[2] / 50) * 100).toFixed(0)}% Gold<br>
