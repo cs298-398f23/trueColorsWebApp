@@ -3,10 +3,12 @@ const start_panel = document.getElementById('start_panel');
 const test_container = document.getElementById('test_container');
 const results_panel = document.getElementById('results_panel');
 const info_panel = document.getElementById('info_panel');
+const pie_chart = document.getElementById('pie_chart_container');
 
 test_container.style.display = 'none';
 results_panel.style.display = 'none';
 info_panel.style.display = 'none';
+pie_chart.style.display = 'none';
 
 // Get all templates for each letter and their associated words
 const letter_1 = document.getElementById('letter_1');
@@ -318,6 +320,22 @@ back_button_info.addEventListener('click', () => {
 
 })
 
+pie_button.addEventListener('click', () => {
+
+    results_panel.style.display = 'none';
+    fetch_data();
+    pie_chart.style.display = 'block';
+
+})
+
+back_button_pie.addEventListener('click', () => {
+    
+        pie_chart.style.display = 'none';
+        results_panel.style.display = 'block';
+    
+    })
+
+
 // Function that tells the user about their color
 function getColorDescription(color) {
     if (color === 'ORANGE') {
@@ -394,3 +412,38 @@ function removeRadioSelectionsFromLS() {
     localStorage.removeItem('radioSelectionC');
     localStorage.removeItem('radioSelectionD');
 }
+
+function fetch_data() {
+    // Fetch data from Python Flask script
+    fetch('/fetch_data')
+    .then(response => response.json())
+    .then(data => {
+        // Extract labels and counts from the JSON data
+        const labels = data.map(item => item[0]); // Extracting the first element of each inner array
+        const counts = data.map(item => item[1]); // Extracting the second element of each inner array
+
+        // Render the pie chart
+        const ctx = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: ['#FFD700', '#008000', '#FFA500', '#0000FF'], // Example colors
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Other User Dominant Colors'
+            }}
+    
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+    }

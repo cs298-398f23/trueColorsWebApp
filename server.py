@@ -4,6 +4,7 @@ import os
 import uuid
 import mysql.connector
 
+
 def create_app():
 
     app = Flask(__name__)
@@ -94,15 +95,30 @@ def create_app():
         else:
             return "Color not updated. Result does not exist.", 400
     
+    
+
+    @app.route('/fetch_data')
+    def fetch_data():
+        '''
+        Fetches data from the database and returns it as JSON.
+        '''
+        cursor, connection = connectToMySQL()
+        select = "SELECT result_color, COUNT(*) AS count FROM user_colors GROUP BY result_color"
+        cursor.execute(select)
+        data = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        return jsonify(data)
     return app
 
 def connectToMySQL():
     '''
     Connects to MySQL and returns a cursor and connection object.
     '''
-    cnx = mysql.connector.connect(user='admin', password='truecolors',
-                                  host='34.228.224.243',
+    cnx = mysql.connector.connect(user='project', password='project',
+                                  host='localhost',
                                   database='test_db')
+    #Tried with user = root, password = password, host = most recent AWS ip
     cursor = cnx.cursor()
     return cursor, cnx
 

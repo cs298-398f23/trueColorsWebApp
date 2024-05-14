@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <title>True Colors Personality Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 
@@ -141,7 +143,16 @@
     <button type="button", class="special_button" id="info_button">Learn more about your color!</button>
     <!-- "Retake Test" button-->
     <button type="button", class="special_button" id="retake_button">Retake Test</button>
+    <!-- "Show Pie Chart" button-->
+    <button type="button", class="special_button" id="pie_button">Show Pie Chart</button>
 
+</div>
+
+<div id="pie_chart_container">
+    <h5 id="pie_chart_title">User Dominant True Color Distribution</h5>
+    <!-- Pie chart that displays the user's color TEST-->
+    <canvas id="pieChart" width="500" height="500"></canvas>
+    <button class="button" id="back_button_pie">Back to Results!</button>
 </div>
 
 <!-- Info panel that describes what the user's color means -->

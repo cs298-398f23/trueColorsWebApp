@@ -121,7 +121,7 @@ ul li {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 450px;
-  height: 450px;
+  height: 600px;
   max-width: 100%;
 }
 
@@ -162,4 +162,18 @@ ul li {
   100% {
     background-position: 0% 50%;
   }
+}
+
+#back_button_pie {
+  background-color:rgb(21, 180, 180);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: inherit;
+  padding: 1.3rem;
 }
