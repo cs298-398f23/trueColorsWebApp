@@ -5,6 +5,7 @@ const results_panel = document.getElementById('results_panel');
 const info_panel = document.getElementById('info_panel');
 const pie_chart = document.getElementById('pie_chart_container');
 const full_results_panel = document.getElementById('full_results_panel');
+let myChart;
 
 test_container.style.display = 'none';
 results_panel.style.display = 'none';
@@ -334,6 +335,7 @@ back_button_pie.addEventListener('click', () => {
     
     pie_chart.style.display = 'none';
     results_panel.style.display = 'block';
+    destroyChart(myChart);
     
 })
 
@@ -454,7 +456,7 @@ function fetch_data() {
 
         // Render the pie chart
         const ctx = document.getElementById('pieChart').getContext('2d');
-        new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: labels,
@@ -466,6 +468,17 @@ function fetch_data() {
             options: {
                 responsive: false,
                 maintainAspectRatio: false, // This line and above are to make the chart not automatically resize
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'User Dominant Color Results',
+                        color: 'black',
+                        weight: 'bold',
+                        font: {
+                            size: 30,
+                        }
+                    }
+                }
             }
     
         });
@@ -474,3 +487,10 @@ function fetch_data() {
         console.error('Error fetching data:', error);
     });
     }
+
+// Function to destroy the existing Chart.js instance
+function destroyChart() {
+    if (myChart) {
+        myChart.destroy();
+    }
+};
