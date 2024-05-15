@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ### 3. Create a .env file
 
-Within the IDE, create a file in the project simply called `.env` with the only thing in it being `FLASK_SECRET_KEY =""`.
+Within the IDE, create a file in the project simply called `.env` and create a line that has `FLASK_SECRET_KEY =""`.
 
 Next, go into the terminal and run the following commands:
 
@@ -44,6 +44,16 @@ print(secrets.token_hex())
 ```
 
 A string of text should have been generated after the `print` command was used. Copy and paste the generated value in-between the `""` quotes in the `.env` file.
+
+After this, also create four new lines in the .env file as follows:
+MYSQL_HOST = ""
+MYSQL_USERNAME = ""
+MYSQL_PASSWORD = ""
+MYSQL_DB = ""
+
+The MYSQL_HOST will be localhost if running locally, or the IP address on Ec2
+The MYSQL_USERNAME and MYSQL_PASSWORD are whatever username and password you are using for the database
+The MYSQL_DB is the name of the database you are using. This will likely be trivia_db
 
 ### 4. Creating the 'test_db' database
 

@@ -115,9 +115,14 @@ def connectToMySQL():
     '''
     Connects to MySQL and returns a cursor and connection object.
     '''
-    cnx = mysql.connector.connect(user='project', password='project',
-                                  host='localhost',
-                                  database='test_db')
+    MYSQL_USERNAME = os.getenv('MYSQL_USERNAME')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+    MYSQL_HOST = os.getenv('MYSQL_HOST')
+    MYSQL_DB = os.getenv('MYSQL_DB')
+
+    cnx = mysql.connector.connect(user=MYSQL_USERNAME, password=MYSQL_PASSWORD,
+                                  host=MYSQL_HOST,
+                                  database=MYSQL_DB)
     #Tried with user = root, password = password, host = most recent AWS ip
     cursor = cnx.cursor()
     return cursor, cnx
