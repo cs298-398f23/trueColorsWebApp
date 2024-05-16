@@ -462,7 +462,7 @@ function fetch_data() {
                 labels: labels,
                 datasets: [{
                     data: counts,
-                    backgroundColor: ['#FFD700', '#008000', '#FFA500', '#0000FF'], // Background Colors
+                    backgroundColor: labels, // Background Colors
                 }]
             },
             options: {
