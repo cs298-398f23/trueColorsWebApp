@@ -69,25 +69,25 @@ async function loadQuestions() {
     const questions = await fetchQuestionsFromDatabase();
 
     // Load questions into HTML
-    letter_1.innerText = questions[0][0];
-    a_word_1.innerText = questions[0][1];
-    a_word_2.innerText = questions[0][2];
-    a_word_3.innerText = questions[0][3];
+    letter_1.innerText = 'Block ' + questions[0][1];
+    a_word_1.innerText = questions[0][3];
+    a_word_2.innerText = questions[1][3];
+    a_word_3.innerText = questions[2][3];
 
-    letter_2.innerText = questions[0][4];
-    b_word_1.innerText = questions[0][5];
-    b_word_2.innerText = questions[0][6];
-    b_word_3.innerText = questions[0][7];
+    letter_2.innerText = 'Block ' + questions[3][1];
+    b_word_1.innerText = questions[3][3];
+    b_word_2.innerText = questions[4][3];
+    b_word_3.innerText = questions[5][3];
 
-    letter_3.innerText = questions[0][8];
-    c_word_1.innerText = questions[0][9];
-    c_word_2.innerText = questions[0][10];
-    c_word_3.innerText = questions[0][11];
+    letter_3.innerText = 'Block ' + questions[6][1];
+    c_word_1.innerText = questions[6][3];
+    c_word_2.innerText = questions[7][3];
+    c_word_3.innerText = questions[8][3];
 
-    letter_4.innerText = questions[0][12];
-    d_word_1.innerText = questions[0][13];
-    d_word_2.innerText = questions[0][14];
-    d_word_3.innerText = questions[0][15];
+    letter_4.innerText = 'Block ' + questions[9][1];
+    d_word_1.innerText = questions[9][3];
+    d_word_2.innerText = questions[10][3];
+    d_word_3.innerText = questions[11][3];
 
 }
 
@@ -128,24 +128,20 @@ function getScores() {
 
 // Function to get the highest score and return its associated color
 function getHighestScore() {
+    const COLOR_NAMES = ["ORANGE", "BLUE", "GOLD", "GREEN"];
+
     const scores = getScores();
     const highest_score = Math.max(...scores);
 
-    if (highest_score === scores[0]) {
-        return 'ORANGE';
+    const highest_colors = [];
+    for (let i = 0; i < scores.length; i++) {
+        if (scores[i] === highest_score) {
+            // Assuming your color names are stored in a separate array
+            highest_colors.push(COLOR_NAMES[i]);
+        }
     }
 
-    else if (highest_score === scores[1]) {
-        return 'BLUE';
-    }
-
-    else if (highest_score === scores[2]) {
-        return 'GOLD';
-    }
-
-    else {
-        return 'GREEN';
-    }
+    return highest_colors;
 }
 
 // Function to get the answers of the current group of words
@@ -423,6 +419,7 @@ function displayResults() {
     user_result.textContent = result_color;
     user_result.style = `color: ${result_color}`;
 
+    
     // Store user's result in database
     fetch(`/storeResult/${result_color}`, {
         method: 'POST',

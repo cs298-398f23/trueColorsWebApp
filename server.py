@@ -24,32 +24,35 @@ def create_app():
     
     @app.route('/getQuestions')
     def get_questions():
+        MYSQL_DB = os.getenv('MYSQL_DB')
+
         '''
         Returns the questions from the database.
         '''
         cursor, connection = connectToMySQL()
-        use_db = "USE test_db;"
+        use_db = f"USE {MYSQL_DB};"
         select = ""
 
         if request.args.get('group') == "1":
-            select = "SELECT * FROM q_group_1;"
+            select = "SELECT * FROM ordered_questions WHERE question_num = 1;"
             
         elif request.args.get('group') == "2":
-            select = "SELECT * FROM q_group_2;"
+            select = "SELECT * FROM ordered_questions WHERE question_num = 2;"
         
         elif request.args.get('group') == "3":
-            select = "SELECT * FROM q_group_3;"
+            select = "SELECT * FROM ordered_questions WHERE question_num = 3;"
             
         elif request.args.get('group') == "4":
-            select = "SELECT * FROM q_group_4;"
+            select = "SELECT * FROM ordered_questions WHERE question_num = 4;"
             
         else:
-            select = "SELECT * FROM q_group_5;"
+            select = "SELECT * FROM ordered_questions WHERE question_num = 5;"
             
         cursor.execute(use_db)
         cursor.execute(select)
         
         questions = cursor.fetchall()
+        print(jsonify(questions))
     
         cursor.close()
         connection.close()
