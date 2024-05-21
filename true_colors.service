@@ -4,7 +4,7 @@ After=network-online.target
 Wants=network-online.target/
 
 [Service]
-ExecStart=/home/romerom/trueColorsWebApp/.venv/bin/gunicorn --certfile /etc/letsencrypt/live/webapps.cs.moravian.edu/fullchain.pem --keyfile /etc/letsencrypt/live/webapps.cs.moravian.edu/privkey.pem --chdir /home/romerom/trueColorsWebApp --bind 0.0.0.0:443 app:app
+ExecStart=/home/romerom/trueColorsWebApp/.venv/bin/gunicorn --certfile /etc/letsencrypt/live/webapps.cs.moravian.edu/fullchain.pem --keyfile /etc/letsencrypt/live/webapps.cs.moravian.edu/privkey.pem --chdir /home/romerom/trueColorsWebApp --bind 0.0.0.0:443 server:app
 
 [Install]
 WantedBy=multi-user.target

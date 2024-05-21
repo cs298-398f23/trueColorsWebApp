@@ -307,7 +307,7 @@ info_button.addEventListener('click', () => {
     info_panel.style = 'display:';
 
     const user_description = document.getElementById('user_description');
-    user_description.innerHTML = getColorDescription(getHighestScore());
+    user_description.innerHTML = getColorDescription(getHighestScore()[0]);
 
 })
 
