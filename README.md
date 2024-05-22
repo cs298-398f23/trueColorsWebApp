@@ -184,6 +184,8 @@ sudo /home/ec2-user/trueColorsWebApp/.venv/bin/gunicorn -w4 --bind 0.0.0.0:80 --
 If successful, you should be able to enter the IP address of the EC2 instance in your browser's search bar and access the functioning True Colors personality test.
 
 
+Document new stuff!!!
+
 
 
 
